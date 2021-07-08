@@ -33,7 +33,6 @@ pub fn build(b: *std.build.Builder) void {
     const exe = b.addExecutable("ray-zig", "src/main.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);
-    exe.addIncludeDir("3rd/raylib/src");
     exe.linkLibrary(raylib);
     exe.install();
 

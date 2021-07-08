@@ -1,5 +1,5 @@
 const std = @import("std");
-const ray = @cImport(@cInclude("raylib.h"));
+const ray = @import("translate-c/raylib.zig");
 pub fn main() anyerror!void {
     const screenWidth = 800;
     const screenHeight = 600;
