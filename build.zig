@@ -13,6 +13,8 @@ pub fn build(b: *std.build.Builder) void {
 
     const raylib = b.addStaticLibrary("raylib", null);
     raylib.linkLibC();
+    raylib.setTarget(target);
+    raylib.setBuildMode(mode);
     raylib.addCSourceFiles(&.{
         "3rd/raylib/src/core.c",
         "3rd/raylib/src/rglfw.c",
@@ -22,7 +24,17 @@ pub fn build(b: *std.build.Builder) void {
         "3rd/raylib/src/utils.c",
         "3rd/raylib/src/models.c",
         "3rd/raylib/src/raudio.c",
-    }, &.{ "-Wall", "-Wno-missing-braces", "-Werror=pointer-arith", "-fno-strict-aliasing", "-std=c99", "-Werror=implicit-function-declaration", "-DPLATFORM_DESKTOP", "-DGRAPHICS_API_OPENGL_33" });
+    }, &.{
+        "-Wall",
+        "-Wno-missing-braces",
+        "-Werror=pointer-arith",
+        "-fno-strict-aliasing",
+        "-std=c99",
+        "-fno-sanitize=undefined",
+        "-Werror=implicit-function-declaration",
+        "-DPLATFORM_DESKTOP",
+        "-DGRAPHICS_API_OPENGL_33",
+    });
     raylib.addIncludeDir("3rd/raylib/src");
     raylib.addIncludeDir("3rd/raylib/src/external/glfw/include");
     raylib.addIncludeDir("3rd/raylib/src/external/glfw/deps/mingw");
