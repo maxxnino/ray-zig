@@ -18,7 +18,13 @@ pub fn main() anyerror!void {
     ray.InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera first person");
     defer ray.CloseWindow();
     // Define the camera to look into our 3d world
-    var camera = ray.Camera3D{ .position = ray.Vector3{ .x = 4, .y = 2, .z = 4 }, .target = ray.Vector3{ .x = 0, .y = 1.8, .z = 0 }, .up = ray.Vector3{ .x = 0, .y = 1, .z = 0 }, .fovy = 60, .projection = ray.CAMERA_PERSPECTIVE };
+    var camera = ray.Camera3D{
+        .position = ray.Vector3{ .x = 4, .y = 2, .z = 4 },
+        .target = ray.Vector3{ .x = 0, .y = 1.8, .z = 0 },
+        .up = ray.Vector3{ .x = 0, .y = 1, .z = 0 },
+        .fovy = 60,
+        .projection = ray.CAMERA_PERSPECTIVE,
+    };
     // Generates some random columns
     const max_columns = 20;
     var heights = [_]f32{0} ** max_columns;
@@ -28,8 +34,17 @@ pub fn main() anyerror!void {
         var i: usize = 0;
         while (i < max_columns) : (i += 1) {
             heights[i] = getRandomValue(f32, 1, 12);
-            positions[i] = ray.Vector3{ .x = getRandomValue(f32, -15, 15), .y = heights[i] / 2, .z = getRandomValue(f32, -15, 15) };
-            colors[i] = ray.Color{ .r = getRandomValue(u8, 20, 255), .g = getRandomValue(u8, 10, 55), .b = 30, .a = 255 };
+            positions[i] = ray.Vector3{
+                .x = getRandomValue(f32, -15, 15),
+                .y = heights[i] / 2,
+                .z = getRandomValue(f32, -15, 15),
+            };
+            colors[i] = ray.Color{
+                .r = getRandomValue(u8, 20, 255),
+                .g = getRandomValue(u8, 10, 55),
+                .b = 30,
+                .a = 255,
+            };
         }
     }
     ray.SetCameraMode(camera, ray.CAMERA_FIRST_PERSON); // Set a first person camera mode

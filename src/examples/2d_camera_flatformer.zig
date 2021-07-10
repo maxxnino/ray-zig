@@ -54,7 +54,13 @@ pub fn updateCameraCenter(camera: *ray.Camera2D, player: Player, width: f32, hei
     camera.offset = ray.Vector2{ .x = width / 2.0, .y = height / 2.0 };
     camera.target = player.position;
 }
-pub fn updateCameraCenterInsideMap(camera: *ray.Camera2D, player: Player, envItems: []EnvItem, width: f32, height: f32) void {
+pub fn updateCameraCenterInsideMap(
+    camera: *ray.Camera2D,
+    player: Player,
+    envItems: []EnvItem,
+    width: f32,
+    height: f32,
+) void {
     camera.target = player.position;
     camera.offset = ray.Vector2{ .x = width / 2.0, .y = height / 2.0 };
 
@@ -79,7 +85,13 @@ pub fn updateCameraCenterInsideMap(camera: *ray.Camera2D, player: Player, envIte
     if (min.y > 0) camera.offset.y = height / 2 - min.y;
 }
 
-pub fn updateCameraCenterSmoothFollow(camera: *ray.Camera2D, player: Player, delta: f32, width: f32, height: f32) void {
+pub fn updateCameraCenterSmoothFollow(
+    camera: *ray.Camera2D,
+    player: Player,
+    delta: f32,
+    width: f32,
+    height: f32,
+) void {
     const minSpeed = 30;
     const minEffectLength = 10;
     const fractionSpeed = 0.8;
@@ -96,8 +108,14 @@ pub fn updateCameraCenterSmoothFollow(camera: *ray.Camera2D, player: Player, del
 pub fn updateCameraPlayerBoundsPush(camera: *ray.Camera2D, player: Player, width: f32, height: f32) void {
     const bbox = ray.Vector2{ .x = 0.2, .y = 0.2 };
 
-    const bboxWorldMin = ray.GetScreenToWorld2D(ray.Vector2{ .x = (1 - bbox.x) * 0.5 * width, .y = (1 - bbox.y) * 0.5 * height }, camera.*);
-    const bboxWorldMax = ray.GetScreenToWorld2D(ray.Vector2{ .x = (1 + bbox.x) * 0.5 * width, .y = (1 + bbox.y) * 0.5 * height }, camera.*);
+    const bboxWorldMin = ray.GetScreenToWorld2D(ray.Vector2{
+        .x = (1 - bbox.x) * 0.5 * width,
+        .y = (1 - bbox.y) * 0.5 * height,
+    }, camera.*);
+    const bboxWorldMax = ray.GetScreenToWorld2D(ray.Vector2{
+        .x = (1 + bbox.x) * 0.5 * width,
+        .y = (1 + bbox.y) * 0.5 * height,
+    }, camera.*);
     camera.offset = ray.Vector2{ .x = (1 - bbox.x) * 0.5 * width, .y = (1 - bbox.y) * 0.5 * height };
 
     if (player.position.x < bboxWorldMin.x) camera.target.x = player.position.x;
@@ -115,10 +133,26 @@ pub fn main() anyerror!void {
     defer ray.CloseWindow();
     var player = Player{ .position = ray.Vector2{ .x = 400, .y = 200 }, .speed = 0, .can_jump = false };
     var envItems = ArrayList(EnvItem).init(std.testing.allocator);
-    try envItems.append(EnvItem{ .rect = ray.Rectangle{ .x = 0, .y = 0, .width = 1000, .height = 1000 }, .blocking = false, .color = ray.LIGHTGRAY });
-    try envItems.append(EnvItem{ .rect = ray.Rectangle{ .x = 0, .y = 400, .width = 1000, .height = 200 }, .blocking = true, .color = ray.GRAY });
-    try envItems.append(EnvItem{ .rect = ray.Rectangle{ .x = 300, .y = 200, .width = 400, .height = 10 }, .blocking = true, .color = ray.GRAY });
-    try envItems.append(EnvItem{ .rect = ray.Rectangle{ .x = 650, .y = 300, .width = 100, .height = 10 }, .blocking = true, .color = ray.GRAY });
+    try envItems.append(EnvItem{
+        .rect = ray.Rectangle{ .x = 0, .y = 0, .width = 1000, .height = 1000 },
+        .blocking = false,
+        .color = ray.LIGHTGRAY,
+    });
+    try envItems.append(EnvItem{
+        .rect = ray.Rectangle{ .x = 0, .y = 400, .width = 1000, .height = 200 },
+        .blocking = true,
+        .color = ray.GRAY,
+    });
+    try envItems.append(EnvItem{
+        .rect = ray.Rectangle{ .x = 300, .y = 200, .width = 400, .height = 10 },
+        .blocking = true,
+        .color = ray.GRAY,
+    });
+    try envItems.append(EnvItem{
+        .rect = ray.Rectangle{ .x = 650, .y = 300, .width = 100, .height = 10 },
+        .blocking = true,
+        .color = ray.GRAY,
+    });
 
     var camera = ray.Camera2D{
         .target = player.position,
@@ -171,7 +205,12 @@ pub fn main() anyerror!void {
             ray.DrawRectangleRec(item.rect, item.color);
         }
 
-        const playerRect = ray.Rectangle{ .x = player.position.x - 20, .y = player.position.y - 40, .width = 40, .height = 40 };
+        const playerRect = ray.Rectangle{
+            .x = player.position.x - 20,
+            .y = player.position.y - 40,
+            .width = 40,
+            .height = 40,
+        };
         ray.DrawRectangleRec(playerRect, ray.RED);
 
         ray.EndMode2D();

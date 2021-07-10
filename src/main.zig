@@ -37,12 +37,18 @@ pub fn main() anyerror!void {
     const screenWidth = 800;
     const screenHeight = 450;
     const total_shader = @intCast(std.meta.Tag(PostProcessShader), std.meta.fields(PostProcessShader).len);
-    //ray.SetConfigFlags(ray.FLAG_MSAA_4X_HINT); // Enable Multi Sampling Anti Aliasing 4x (if available)
+    ray.SetConfigFlags(ray.FLAG_MSAA_4X_HINT); // Enable Multi Sampling Anti Aliasing 4x (if available)
     ray.InitWindow(screenWidth, screenHeight, "raylib [shaders] example - postprocessing shader");
     defer ray.CloseWindow();
 
     // Define the camera to look into our 3d world
-    var camera = ray.Camera{ .position = ray.Vector3{ .x = 2, .y = 3, .z = 2 }, .target = ray.Vector3{ .x = 0, .y = 1, .z = 0 }, .up = ray.Vector3{ .x = 0, .y = 1, .z = 0 }, .fovy = 45, .projection = ray.CAMERA_PERSPECTIVE };
+    var camera = ray.Camera{
+        .position = ray.Vector3{ .x = 2, .y = 3, .z = 2 },
+        .target = ray.Vector3{ .x = 0, .y = 1, .z = 0 },
+        .up = ray.Vector3{ .x = 0, .y = 1, .z = 0 },
+        .fovy = 45,
+        .projection = ray.CAMERA_PERSPECTIVE,
+    };
 
     var model = ray.LoadModel("3rd/raylib/examples/shaders/resources/models/church.obj"); // Load OBJ model
     defer ray.UnloadModel(model); // Unload model
@@ -112,7 +118,12 @@ pub fn main() anyerror!void {
         ray.BeginShaderMode(shaders[@enumToInt(current_shader)]);
         // NOTE: Render texture must be y-flipped due to default OpenGL coordinates
         // (left-bottom)
-        ray.DrawTextureRec(target.texture, ray.Rectangle{ .x = 0, .y = 0, .width = @intToFloat(f32, target.texture.width), .height = @intToFloat(f32, -target.texture.height) }, ray.Vector2{ .x = 0, .y = 0 }, ray.WHITE);
+        ray.DrawTextureRec(target.texture, ray.Rectangle{
+            .x = 0,
+            .y = 0,
+            .width = @intToFloat(f32, target.texture.width),
+            .height = @intToFloat(f32, -target.texture.height),
+        }, ray.Vector2{ .x = 0, .y = 0 }, ray.WHITE);
         ray.EndShaderMode();
 
         // Draw 2d shapes and text over drawn texture
