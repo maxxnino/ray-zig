@@ -15,16 +15,16 @@ fn randomPos(random: std.rand.Random, min: f32, max: f32) Vec2 {
     );
 }
 
-fn randomVel(random: std.rand.Random, min: f32, max: f32) Vec2 {
+fn randomVel(random: std.rand.Random, value: f32) Vec2 {
     return Vec2.new(
-        std.math.max((random.float(f32) - 0.5) * max, min),
-        std.math.max((random.float(f32) - 0.5) * max, min),
+        (random.float(f32) - 0.5) * value * 2,
+        (random.float(f32) - 0.5) * value * 2,
     );
 }
 fn randomPosTo(random: std.rand.Random, m_pos: Vec2, h_size: Vec2) Vec2 {
     return Vec2.new(
-        std.math.max(random.float(f32) * m_pos.x + h_size.x, m_pos.x - h_size.x),
-        std.math.max(random.float(f32) * m_pos.y + h_size.y, m_pos.y - h_size.y),
+        (random.float(f32) - 0.5) * h_size.x * 2 + m_pos.x,
+        (random.float(f32) - 0.5) * h_size.y * 2 + m_pos.y,
     );
 }
 
@@ -73,10 +73,12 @@ pub const RedCallback = struct {
 
     pub fn onOverlap(self: *RedCallback, left: u32, right: u32) void {
         if (left == right) return;
-        const key = left << 16 | right;
+        const l = if(left < right) left else right;
+        const r = if(l == left) right else left;
+        const key = l << 16 | r;
         if (self.map.contains(key)) return;
         self.map.putNoClobber(key, {}) catch unreachable;
-        self.pairs.append(.{ .left = left, .right = right }) catch unreachable;
+        self.pairs.append(.{ .left = l, .right = r }) catch unreachable;
     }
 
     pub fn reset(q: *RedCallback) void {
@@ -121,7 +123,7 @@ pub fn main() !void {
     var total_big: u32 = 100;
     const max_x: f32 = 1000;
     const min_size: f32 = 5;
-    const max_size: f32 = 20;
+    const max_size: f32 = 10;
     // bp.preCreateGrid(Vec2.zero(), Vec2.new(max_x, max_x));
     try manager.setCapacity(allocator, total_big + total_small);
     // Init entities
@@ -132,7 +134,7 @@ pub fn main() !void {
                 .entity = entity,
                 .pos = randomPos(random, 0, max_x),
                 .half_size = BroadPhase.half_element_size,
-                .vel = randomVel(random, -15, 15),
+                .vel = randomVel(random, 15),
                 .refresh_vel = random.float(f32) * 10,
             });
         }
@@ -141,7 +143,7 @@ pub fn main() !void {
                 .entity = entity,
                 .pos = randomPos(random, 0, max_x),
                 .half_size = randomPos(random, min_size, max_size),
-                .vel = randomVel(random, -15, 15),
+                .vel = randomVel(random, 15),
                 .refresh_vel = random.float(f32) * 10,
             });
         }
@@ -201,32 +203,33 @@ pub fn main() !void {
         }
         if (ray.IsKeyPressed(ray.KEY_F)) {
             var index: u32 = 0;
+            var entity = @intCast(u32, slice.len);
 
             while (index < 10) : (index += 1) {
                 const pos = randomPosTo(random, m_screen, h_screen_size);
-                const entity = @intCast(u32, slice.len);
                 try manager.append(allocator, .{
                     .entity = entity,
                     .pos = pos,
                     .half_size = BroadPhase.half_element_size,
                     .proxy = bp.createProxy(pos, BroadPhase.half_element_size, entity),
-                    .vel = randomVel(random, -15, 15),
+                    .vel = randomVel(random, 15),
                     .refresh_vel = random.float(f32) * 10,
                 });
+                entity += 1;
             }
             index = 0;
             while (index < 2) : (index += 1) {
                 const pos = randomPosTo(random, m_screen, h_screen_size);
-                const entity = @intCast(u32, slice.len);
                 const half_size = randomPos(random, min_size, max_size);
                 try manager.append(allocator, .{
                     .entity = entity,
                     .pos = pos,
                     .half_size = half_size,
                     .proxy = bp.createProxy(pos, half_size, entity),
-                    .vel = randomVel(random, -15, 15),
+                    .vel = randomVel(random, 15),
                     .refresh_vel = random.float(f32) * 10,
                 });
+                entity += 1;
             }
             total_big += 2;
             total_small += 10;
@@ -246,7 +249,7 @@ pub fn main() !void {
             t.* -= 0.016;
             if (t.* <= 0) {
                 t.* = random.float(f32) * 10;
-                vel[i] = randomVel(random, -15, 15);
+                vel[i] = randomVel(random, 15);
             }
         }
         //Move
@@ -270,12 +273,12 @@ pub fn main() !void {
         const time_0 = timer.read();
 
         defer screen_callback.reset();
+        defer red_callback.reset();
         try bp.userQuery(m_screen, h_screen_size, {}, &screen_callback);
         for (screen_callback.entities.items) |entity| {
             try bp.query(position[entity], h_size[entity], proxy[entity], entities[entity], &red_callback);
         }
 
-        defer red_callback.reset();
 
         ray.BeginDrawing();
         defer ray.EndDrawing();
