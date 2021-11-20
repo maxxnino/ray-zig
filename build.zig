@@ -1,5 +1,5 @@
 const std = @import("std");
-
+const pkgs = @import("deps.zig").pkgs;
 pub fn build(b: *std.build.Builder) void {
     // Standard target options allows the person running `zig build` to choose
     // what target to build for. Here we do not override the defaults, which
@@ -46,6 +46,7 @@ pub fn build(b: *std.build.Builder) void {
     exe.setTarget(target);
     exe.setBuildMode(mode);
     exe.linkLibrary(raylib);
+    pkgs.addAllTo(exe);
     exe.install();
 
     const run_cmd = exe.run();

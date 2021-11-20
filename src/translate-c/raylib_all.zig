@@ -1,4 +1,52 @@
-pub usingnamespace @import("std").zig.c_builtins;
+pub const __builtin_bswap16 = @import("std").zig.c_builtins.__builtin_bswap16;
+pub const __builtin_bswap32 = @import("std").zig.c_builtins.__builtin_bswap32;
+pub const __builtin_bswap64 = @import("std").zig.c_builtins.__builtin_bswap64;
+pub const __builtin_signbit = @import("std").zig.c_builtins.__builtin_signbit;
+pub const __builtin_signbitf = @import("std").zig.c_builtins.__builtin_signbitf;
+pub const __builtin_popcount = @import("std").zig.c_builtins.__builtin_popcount;
+pub const __builtin_ctz = @import("std").zig.c_builtins.__builtin_ctz;
+pub const __builtin_clz = @import("std").zig.c_builtins.__builtin_clz;
+pub const __builtin_sqrt = @import("std").zig.c_builtins.__builtin_sqrt;
+pub const __builtin_sqrtf = @import("std").zig.c_builtins.__builtin_sqrtf;
+pub const __builtin_sin = @import("std").zig.c_builtins.__builtin_sin;
+pub const __builtin_sinf = @import("std").zig.c_builtins.__builtin_sinf;
+pub const __builtin_cos = @import("std").zig.c_builtins.__builtin_cos;
+pub const __builtin_cosf = @import("std").zig.c_builtins.__builtin_cosf;
+pub const __builtin_exp = @import("std").zig.c_builtins.__builtin_exp;
+pub const __builtin_expf = @import("std").zig.c_builtins.__builtin_expf;
+pub const __builtin_exp2 = @import("std").zig.c_builtins.__builtin_exp2;
+pub const __builtin_exp2f = @import("std").zig.c_builtins.__builtin_exp2f;
+pub const __builtin_log = @import("std").zig.c_builtins.__builtin_log;
+pub const __builtin_logf = @import("std").zig.c_builtins.__builtin_logf;
+pub const __builtin_log2 = @import("std").zig.c_builtins.__builtin_log2;
+pub const __builtin_log2f = @import("std").zig.c_builtins.__builtin_log2f;
+pub const __builtin_log10 = @import("std").zig.c_builtins.__builtin_log10;
+pub const __builtin_log10f = @import("std").zig.c_builtins.__builtin_log10f;
+pub const __builtin_abs = @import("std").zig.c_builtins.__builtin_abs;
+pub const __builtin_fabs = @import("std").zig.c_builtins.__builtin_fabs;
+pub const __builtin_fabsf = @import("std").zig.c_builtins.__builtin_fabsf;
+pub const __builtin_floor = @import("std").zig.c_builtins.__builtin_floor;
+pub const __builtin_floorf = @import("std").zig.c_builtins.__builtin_floorf;
+pub const __builtin_ceil = @import("std").zig.c_builtins.__builtin_ceil;
+pub const __builtin_ceilf = @import("std").zig.c_builtins.__builtin_ceilf;
+pub const __builtin_trunc = @import("std").zig.c_builtins.__builtin_trunc;
+pub const __builtin_truncf = @import("std").zig.c_builtins.__builtin_truncf;
+pub const __builtin_round = @import("std").zig.c_builtins.__builtin_round;
+pub const __builtin_roundf = @import("std").zig.c_builtins.__builtin_roundf;
+pub const __builtin_strlen = @import("std").zig.c_builtins.__builtin_strlen;
+pub const __builtin_strcmp = @import("std").zig.c_builtins.__builtin_strcmp;
+pub const __builtin_object_size = @import("std").zig.c_builtins.__builtin_object_size;
+pub const __builtin___memset_chk = @import("std").zig.c_builtins.__builtin___memset_chk;
+pub const __builtin_memset = @import("std").zig.c_builtins.__builtin_memset;
+pub const __builtin___memcpy_chk = @import("std").zig.c_builtins.__builtin___memcpy_chk;
+pub const __builtin_memcpy = @import("std").zig.c_builtins.__builtin_memcpy;
+pub const __builtin_expect = @import("std").zig.c_builtins.__builtin_expect;
+pub const __builtin_nanf = @import("std").zig.c_builtins.__builtin_nanf;
+pub const __builtin_huge_valf = @import("std").zig.c_builtins.__builtin_huge_valf;
+pub const __builtin_inff = @import("std").zig.c_builtins.__builtin_inff;
+pub const __builtin_isnan = @import("std").zig.c_builtins.__builtin_isnan;
+pub const __builtin_isinf = @import("std").zig.c_builtins.__builtin_isinf;
+pub const __builtin_isinf_sign = @import("std").zig.c_builtins.__builtin_isinf_sign;
 pub const __builtin_va_list = [*c]u8;
 pub const va_list = __builtin_va_list;
 pub const __gnuc_va_list = __builtin_va_list;
@@ -894,7 +942,7 @@ pub extern fn LoadFont(fileName: [*c]const u8) Font;
 pub extern fn LoadFontEx(fileName: [*c]const u8, fontSize: c_int, fontChars: [*c]c_int, charsCount: c_int) Font;
 pub extern fn LoadFontFromImage(image: Image, key: Color, firstChar: c_int) Font;
 pub extern fn LoadFontFromMemory(fileType: [*c]const u8, fileData: [*c]const u8, dataSize: c_int, fontSize: c_int, fontChars: [*c]c_int, charsCount: c_int) Font;
-pub extern fn LoadFontData(fileData: [*c]const u8, dataSize: c_int, fontSize: c_int, fontChars: [*c]c_int, charsCount: c_int, type: c_int) [*c]CharInfo;
+pub extern fn LoadFontData(fileData: [*c]const u8, dataSize: c_int, fontSize: c_int, fontChars: [*c]c_int, charsCount: c_int, @"type": c_int) [*c]CharInfo;
 pub extern fn GenImageFontAtlas(chars: [*c]const CharInfo, recs: [*c][*c]Rectangle, charsCount: c_int, fontSize: c_int, padding: c_int, packMethod: c_int) Image;
 pub extern fn UnloadFontData(chars: [*c]CharInfo, charsCount: c_int) void;
 pub extern fn UnloadFont(font: Font) void;
@@ -1056,9 +1104,9 @@ pub const float3 = struct_float3;
 pub const struct_float16 = extern struct {
     v: [16]f32,
 };
-pub const float16 = struct_float16; // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:584:3: warning: TODO implement translation of stmt class GCCAsmStmtClass
-// C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:581:36: warning: unable to translate function, demoted to extern
-pub extern fn __debugbreak() callconv(.C) void;
+pub const float16 = struct_float16; // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:584:3: warning: TODO implement translation of stmt class GCCAsmStmtClass
+// C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:581:36: warning: unable to translate function, demoted to extern
+pub extern fn __debugbreak() void;
 pub extern fn __mingw_get_crt_info() [*c]const u8;
 pub const rsize_t = usize;
 pub const ptrdiff_t = c_longlong;
@@ -1135,7 +1183,7 @@ pub const union___mingw_flt_type_t = extern union {
     x: f32,
     val: c_uint,
 };
-pub const __mingw_flt_type_t = union___mingw_flt_type_t; // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:137:11: warning: struct demoted to opaque type - has bitfield
+pub const __mingw_flt_type_t = union___mingw_flt_type_t; // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:137:11: warning: struct demoted to opaque type - has bitfield
 const struct_unnamed_3 = opaque {};
 pub const union___mingw_ldbl_type_t = extern union {
     x: c_longdouble,
@@ -1165,14 +1213,12 @@ pub extern fn ceil(_X: f64) f64;
 pub extern fn floor(_X: f64) f64;
 pub fn fabsf(arg_x: f32) callconv(.C) f32 {
     var x = arg_x;
-    _ = x;
     return __builtin_fabsf(x);
-} // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:219:23: warning: unsupported floating point constant format APFloatBaseSemantics.x86DoubleExtended
-// C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:214:36: warning: unable to translate function, demoted to extern
+} // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:219:23: warning: unsupported floating point constant format APFloatBaseSemantics.x86DoubleExtended
+// C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:214:36: warning: unable to translate function, demoted to extern
 pub extern fn fabsl(arg_x: c_longdouble) callconv(.C) c_longdouble;
 pub fn fabs(arg_x: f64) callconv(.C) f64 {
     var x = arg_x;
-    _ = x;
     return __builtin_fabs(x);
 }
 pub extern fn ldexp(_X: f64, _Y: c_int) f64;
@@ -1220,25 +1266,19 @@ pub const float_t = f32;
 pub const double_t = f64;
 pub fn __fpclassifyl(arg_x: c_longdouble) callconv(.C) c_int {
     var x = arg_x;
-    _ = x;
     var hlp: __mingw_ldbl_type_t = undefined;
-    _ = hlp;
     var e: c_uint = undefined;
-    _ = e;
     hlp.x = x;
     e = @bitCast(c_uint, hlp.lh.sign_exponent & @as(c_int, 32767));
     if (!(e != 0)) {
         var h: c_uint = hlp.lh.high;
-        _ = h;
         if (!((hlp.lh.low | h) != 0)) return 16384 else if (!((h & @as(c_uint, 2147483648)) != 0)) return @as(c_int, 1024) | @as(c_int, 16384);
     } else if (e == @bitCast(c_uint, @as(c_int, 32767))) return if (((hlp.lh.high & @bitCast(c_uint, @as(c_int, 2147483647))) | hlp.lh.low) == @bitCast(c_uint, @as(c_int, 0))) @as(c_int, 256) | @as(c_int, 1024) else @as(c_int, 256);
     return 1024;
 }
 pub fn __fpclassifyf(arg_x: f32) callconv(.C) c_int {
     var x = arg_x;
-    _ = x;
     var hlp: __mingw_flt_type_t = undefined;
-    _ = hlp;
     hlp.x = x;
     hlp.val &= @bitCast(c_uint, @as(c_int, 2147483647));
     if (hlp.val == @bitCast(c_uint, @as(c_int, 0))) return 16384;
@@ -1248,13 +1288,9 @@ pub fn __fpclassifyf(arg_x: f32) callconv(.C) c_int {
 }
 pub fn __fpclassify(arg_x: f64) callconv(.C) c_int {
     var x = arg_x;
-    _ = x;
     var hlp: __mingw_dbl_type_t = undefined;
-    _ = hlp;
     var l: c_uint = undefined;
-    _ = l;
     var h: c_uint = undefined;
-    _ = h;
     hlp.x = x;
     h = hlp.lh.high;
     l = hlp.lh.low | (h & @bitCast(c_uint, @as(c_int, 1048575)));
@@ -1266,13 +1302,9 @@ pub fn __fpclassify(arg_x: f64) callconv(.C) c_int {
 }
 pub fn __isnan(arg__x: f64) callconv(.C) c_int {
     var _x = arg__x;
-    _ = _x;
     var hlp: __mingw_dbl_type_t = undefined;
-    _ = hlp;
     var l: c_int = undefined;
-    _ = l;
     var h: c_int = undefined;
-    _ = h;
     hlp.x = _x;
     l = @bitCast(c_int, hlp.lh.low);
     h = @bitCast(c_int, hlp.lh.high & @bitCast(c_uint, @as(c_int, 2147483647)));
@@ -1282,11 +1314,8 @@ pub fn __isnan(arg__x: f64) callconv(.C) c_int {
 }
 pub fn __isnanf(arg__x: f32) callconv(.C) c_int {
     var _x = arg__x;
-    _ = _x;
     var hlp: __mingw_flt_type_t = undefined;
-    _ = hlp;
     var i: c_int = undefined;
-    _ = i;
     hlp.x = _x;
     i = @bitCast(c_int, hlp.val & @bitCast(c_uint, @as(c_int, 2147483647)));
     i = @as(c_int, 2139095040) - i;
@@ -1294,13 +1323,9 @@ pub fn __isnanf(arg__x: f32) callconv(.C) c_int {
 }
 pub fn __isnanl(arg__x: c_longdouble) callconv(.C) c_int {
     var _x = arg__x;
-    _ = _x;
     var ld: __mingw_ldbl_type_t = undefined;
-    _ = ld;
     var xx: c_int = undefined;
-    _ = xx;
     var signexp: c_int = undefined;
-    _ = signexp;
     ld.x = _x;
     signexp = (ld.lh.sign_exponent & @as(c_int, 32767)) << @intCast(@import("std").math.Log2Int(c_int), 1);
     xx = @bitCast(c_int, ld.lh.low | (ld.lh.high & @as(c_uint, 2147483647)));
@@ -1310,25 +1335,19 @@ pub fn __isnanl(arg__x: c_longdouble) callconv(.C) c_int {
 }
 pub fn __signbit(arg_x: f64) callconv(.C) c_int {
     var x = arg_x;
-    _ = x;
     var hlp: __mingw_dbl_type_t = undefined;
-    _ = hlp;
     hlp.x = x;
     return @boolToInt((hlp.lh.high & @as(c_uint, 2147483648)) != @bitCast(c_uint, @as(c_int, 0)));
 }
 pub fn __signbitf(arg_x: f32) callconv(.C) c_int {
     var x = arg_x;
-    _ = x;
     var hlp: __mingw_flt_type_t = undefined;
-    _ = hlp;
     hlp.x = x;
     return @boolToInt((hlp.val & @as(c_uint, 2147483648)) != @bitCast(c_uint, @as(c_int, 0)));
 }
 pub fn __signbitl(arg_x: c_longdouble) callconv(.C) c_int {
     var x = arg_x;
-    _ = x;
     var ld: __mingw_ldbl_type_t = undefined;
-    _ = ld;
     ld.x = x;
     return @boolToInt((ld.lh.sign_exponent & @as(c_int, 32768)) != @as(c_int, 0));
 }
@@ -1348,19 +1367,16 @@ pub extern fn atan2f(f32, f32) f32;
 pub extern fn atan2l(c_longdouble, c_longdouble) c_longdouble;
 pub fn sinhf(arg__X: f32) callconv(.C) f32 {
     var _X = arg__X;
-    _ = _X;
     return @floatCast(f32, sinh(@floatCast(f64, _X)));
 }
 pub extern fn sinhl(c_longdouble) c_longdouble;
 pub fn coshf(arg__X: f32) callconv(.C) f32 {
     var _X = arg__X;
-    _ = _X;
     return @floatCast(f32, cosh(@floatCast(f64, _X)));
 }
 pub extern fn coshl(c_longdouble) c_longdouble;
 pub fn tanhf(arg__X: f32) callconv(.C) f32 {
     var _X = arg__X;
-    _ = _X;
     return @floatCast(f32, tanh(@floatCast(f64, _X)));
 }
 pub extern fn tanhl(c_longdouble) c_longdouble;
@@ -1375,7 +1391,6 @@ pub extern fn atanhf(f32) f32;
 pub extern fn atanhl(c_longdouble) c_longdouble;
 pub fn expf(arg__X: f32) callconv(.C) f32 {
     var _X = arg__X;
-    _ = _X;
     return @floatCast(f32, exp(@floatCast(f64, _X)));
 }
 pub extern fn expl(c_longdouble) c_longdouble;
@@ -1387,9 +1402,7 @@ pub extern fn expm1f(f32) f32;
 pub extern fn expm1l(c_longdouble) c_longdouble;
 pub fn frexpf(arg__X: f32, arg__Y: [*c]c_int) callconv(.C) f32 {
     var _X = arg__X;
-    _ = _X;
     var _Y = arg__Y;
-    _ = _Y;
     return @floatCast(f32, frexp(@floatCast(f64, _X), _Y));
 }
 pub extern fn frexpl(c_longdouble, [*c]c_int) c_longdouble;
@@ -1398,9 +1411,7 @@ pub extern fn ilogbf(f32) c_int;
 pub extern fn ilogbl(c_longdouble) c_int;
 pub fn ldexpf(arg_x: f32, arg_expn: c_int) callconv(.C) f32 {
     var x = arg_x;
-    _ = x;
     var expn = arg_expn;
-    _ = expn;
     return @floatCast(f32, ldexp(@floatCast(f64, x), expn));
 }
 pub extern fn ldexpl(c_longdouble, c_int) c_longdouble;
@@ -1431,17 +1442,13 @@ pub extern fn cbrtl(c_longdouble) c_longdouble;
 pub extern fn hypot(f64, f64) f64;
 pub fn hypotf(arg_x: f32, arg_y: f32) callconv(.C) f32 {
     var x = arg_x;
-    _ = x;
     var y = arg_y;
-    _ = y;
     return @floatCast(f32, hypot(@floatCast(f64, x), @floatCast(f64, y)));
 }
 pub extern fn hypotl(c_longdouble, c_longdouble) c_longdouble;
 pub fn powf(arg__X: f32, arg__Y: f32) callconv(.C) f32 {
     var _X = arg__X;
-    _ = _X;
     var _Y = arg__Y;
-    _ = _Y;
     return @floatCast(f32, pow(@floatCast(f64, _X), @floatCast(f64, _Y)));
 }
 pub extern fn powl(c_longdouble, c_longdouble) c_longdouble;
@@ -1498,13 +1505,9 @@ pub extern fn remquof(f32, f32, [*c]c_int) f32;
 pub extern fn remquol(c_longdouble, c_longdouble, [*c]c_int) c_longdouble;
 pub fn copysign(arg_x: f64, arg_y: f64) callconv(.C) f64 {
     var x = arg_x;
-    _ = x;
     var y = arg_y;
-    _ = y;
     var hx: __mingw_dbl_type_t = undefined;
-    _ = hx;
     var hy: __mingw_dbl_type_t = undefined;
-    _ = hy;
     hx.x = x;
     hy.x = y;
     hx.lh.high = (hx.lh.high & @bitCast(c_uint, @as(c_int, 2147483647))) | (hy.lh.high & @as(c_uint, 2147483648));
@@ -1512,13 +1515,9 @@ pub fn copysign(arg_x: f64, arg_y: f64) callconv(.C) f64 {
 }
 pub fn copysignf(arg_x: f32, arg_y: f32) callconv(.C) f32 {
     var x = arg_x;
-    _ = x;
     var y = arg_y;
-    _ = y;
     var hx: __mingw_flt_type_t = undefined;
-    _ = hx;
     var hy: __mingw_flt_type_t = undefined;
-    _ = hy;
     hx.x = x;
     hy.x = y;
     hx.val = (hx.val & @bitCast(c_uint, @as(c_int, 2147483647))) | (hy.val & @as(c_uint, 2147483648));
@@ -1556,44 +1555,29 @@ pub extern fn _fpclassf(_X: f32) c_int;
 pub extern fn _chgsignl(c_longdouble) c_longdouble;
 pub fn Clamp(arg_value: f32, arg_min: f32, arg_max: f32) callconv(.C) f32 {
     var value = arg_value;
-    _ = value;
     var min = arg_min;
-    _ = min;
     var max = arg_max;
-    _ = max;
     const res: f32 = if (value < min) min else value;
-    _ = res;
     return if (res > max) max else res;
 }
 pub fn Lerp(arg_start: f32, arg_end: f32, arg_amount: f32) callconv(.C) f32 {
     var start = arg_start;
-    _ = start;
     var end = arg_end;
-    _ = end;
     var amount = arg_amount;
-    _ = amount;
     return start + (amount * (end - start));
 }
 pub fn Normalize(arg_value: f32, arg_start: f32, arg_end: f32) callconv(.C) f32 {
     var value = arg_value;
-    _ = value;
     var start = arg_start;
-    _ = start;
     var end = arg_end;
-    _ = end;
     return (value - start) / (end - start);
 }
 pub fn Remap(arg_value: f32, arg_inputStart: f32, arg_inputEnd: f32, arg_outputStart: f32, arg_outputEnd: f32) callconv(.C) f32 {
     var value = arg_value;
-    _ = value;
     var inputStart = arg_inputStart;
-    _ = inputStart;
     var inputEnd = arg_inputEnd;
-    _ = inputEnd;
     var outputStart = arg_outputStart;
-    _ = outputStart;
     var outputEnd = arg_outputEnd;
-    _ = outputEnd;
     return (((value - inputStart) / (inputEnd - inputStart)) * (outputEnd - outputStart)) + outputStart;
 }
 pub fn Vector2Zero() callconv(.C) Vector2 {
@@ -1601,7 +1585,6 @@ pub fn Vector2Zero() callconv(.C) Vector2 {
         .x = 0.0,
         .y = 0.0,
     };
-    _ = result;
     return result;
 }
 pub fn Vector2One() callconv(.C) Vector2 {
@@ -1609,96 +1592,70 @@ pub fn Vector2One() callconv(.C) Vector2 {
         .x = 1.0,
         .y = 1.0,
     };
-    _ = result;
     return result;
 }
 pub fn Vector2Add(arg_v1: Vector2, arg_v2: Vector2) callconv(.C) Vector2 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector2 = Vector2{
         .x = v1.x + v2.x,
         .y = v1.y + v2.y,
     };
-    _ = result;
     return result;
 }
 pub fn Vector2AddValue(arg_v: Vector2, arg_add: f32) callconv(.C) Vector2 {
     var v = arg_v;
-    _ = v;
     var add = arg_add;
-    _ = add;
     var result: Vector2 = Vector2{
         .x = v.x + add,
         .y = v.y + add,
     };
-    _ = result;
     return result;
 }
 pub fn Vector2Subtract(arg_v1: Vector2, arg_v2: Vector2) callconv(.C) Vector2 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector2 = Vector2{
         .x = v1.x - v2.x,
         .y = v1.y - v2.y,
     };
-    _ = result;
     return result;
 }
 pub fn Vector2SubtractValue(arg_v: Vector2, arg_sub: f32) callconv(.C) Vector2 {
     var v = arg_v;
-    _ = v;
     var sub = arg_sub;
-    _ = sub;
     var result: Vector2 = Vector2{
         .x = v.x - sub,
         .y = v.y - sub,
     };
-    _ = result;
     return result;
 }
 pub fn Vector2Length(arg_v: Vector2) callconv(.C) f32 {
     var v = arg_v;
-    _ = v;
     var result: f32 = sqrtf((v.x * v.x) + (v.y * v.y));
-    _ = result;
     return result;
 }
 pub fn Vector2LengthSqr(arg_v: Vector2) callconv(.C) f32 {
     var v = arg_v;
-    _ = v;
     var result: f32 = (v.x * v.x) + (v.y * v.y);
-    _ = result;
     return result;
 }
 pub fn Vector2DotProduct(arg_v1: Vector2, arg_v2: Vector2) callconv(.C) f32 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: f32 = (v1.x * v2.x) + (v1.y * v2.y);
-    _ = result;
     return result;
 }
 pub fn Vector2Distance(arg_v1: Vector2, arg_v2: Vector2) callconv(.C) f32 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: f32 = sqrtf(((v1.x - v2.x) * (v1.x - v2.x)) + ((v1.y - v2.y) * (v1.y - v2.y)));
-    _ = result;
     return result;
 }
 pub fn Vector2Angle(arg_v1: Vector2, arg_v2: Vector2) callconv(.C) f32 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: f32 = atan2f(v2.y - v1.y, v2.x - v1.x) * (180.0 / 3.1415927410125732);
-    _ = result;
     if (result < @intToFloat(f32, @as(c_int, 0))) {
         result += 360.0;
     }
@@ -1706,124 +1663,91 @@ pub fn Vector2Angle(arg_v1: Vector2, arg_v2: Vector2) callconv(.C) f32 {
 }
 pub fn Vector2Scale(arg_v: Vector2, arg_scale: f32) callconv(.C) Vector2 {
     var v = arg_v;
-    _ = v;
     var scale = arg_scale;
-    _ = scale;
     var result: Vector2 = Vector2{
         .x = v.x * scale,
         .y = v.y * scale,
     };
-    _ = result;
     return result;
 }
 pub fn Vector2Multiply(arg_v1: Vector2, arg_v2: Vector2) callconv(.C) Vector2 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector2 = Vector2{
         .x = v1.x * v2.x,
         .y = v1.y * v2.y,
     };
-    _ = result;
     return result;
 }
 pub fn Vector2Negate(arg_v: Vector2) callconv(.C) Vector2 {
     var v = arg_v;
-    _ = v;
     var result: Vector2 = Vector2{
         .x = -v.x,
         .y = -v.y,
     };
-    _ = result;
     return result;
 }
 pub fn Vector2Divide(arg_v1: Vector2, arg_v2: Vector2) callconv(.C) Vector2 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector2 = Vector2{
         .x = v1.x / v2.x,
         .y = v1.y / v2.y,
     };
-    _ = result;
     return result;
 }
 pub fn Vector2Normalize(arg_v: Vector2) callconv(.C) Vector2 {
     var v = arg_v;
-    _ = v;
     var result: Vector2 = Vector2Scale(v, @intToFloat(f32, @as(c_int, 1)) / Vector2Length(v));
-    _ = result;
     return result;
 }
 pub fn Vector2Lerp(arg_v1: Vector2, arg_v2: Vector2, arg_amount: f32) callconv(.C) Vector2 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var amount = arg_amount;
-    _ = amount;
     var result: Vector2 = Vector2{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
     };
-    _ = result;
     result.x = v1.x + (amount * (v2.x - v1.x));
     result.y = v1.y + (amount * (v2.y - v1.y));
     return result;
 }
 pub fn Vector2Reflect(arg_v: Vector2, arg_normal: Vector2) callconv(.C) Vector2 {
     var v = arg_v;
-    _ = v;
     var normal = arg_normal;
-    _ = normal;
     var result: Vector2 = Vector2{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
     };
-    _ = result;
     var dotProduct: f32 = Vector2DotProduct(v, normal);
-    _ = dotProduct;
     result.x = v.x - ((2.0 * normal.x) * dotProduct);
     result.y = v.y - ((2.0 * normal.y) * dotProduct);
     return result;
 }
 pub fn Vector2Rotate(arg_v: Vector2, arg_degs: f32) callconv(.C) Vector2 {
     var v = arg_v;
-    _ = v;
     var degs = arg_degs;
-    _ = degs;
     var rads: f32 = degs * (3.1415927410125732 / 180.0);
-    _ = rads;
     var result: Vector2 = Vector2{
         .x = (v.x * cosf(rads)) - (v.y * sinf(rads)),
         .y = (v.x * sinf(rads)) + (v.y * cosf(rads)),
     };
-    _ = result;
     return result;
 }
 pub fn Vector2MoveTowards(arg_v: Vector2, arg_target: Vector2, arg_maxDistance: f32) callconv(.C) Vector2 {
     var v = arg_v;
-    _ = v;
     var target = arg_target;
-    _ = target;
     var maxDistance = arg_maxDistance;
-    _ = maxDistance;
     var result: Vector2 = Vector2{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
     };
-    _ = result;
     var dx: f32 = target.x - v.x;
-    _ = dx;
     var dy: f32 = target.y - v.y;
-    _ = dy;
     var value: f32 = (dx * dx) + (dy * dy);
-    _ = value;
     if ((value == @intToFloat(f32, @as(c_int, 0))) or ((maxDistance >= @intToFloat(f32, @as(c_int, 0))) and (value <= (maxDistance * maxDistance)))) return target;
     var dist: f32 = sqrtf(value);
-    _ = dist;
     result.x = v.x + ((dx / dist) * maxDistance);
     result.y = v.y + ((dy / dist) * maxDistance);
     return result;
@@ -1834,7 +1758,6 @@ pub fn Vector3Zero() callconv(.C) Vector3 {
         .y = 0.0,
         .z = 0.0,
     };
-    _ = result;
     return result;
 }
 pub fn Vector3One() callconv(.C) Vector3 {
@@ -1843,117 +1766,91 @@ pub fn Vector3One() callconv(.C) Vector3 {
         .y = 1.0,
         .z = 1.0,
     };
-    _ = result;
     return result;
 }
 pub fn Vector3Add(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) Vector3 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector3 = Vector3{
         .x = v1.x + v2.x,
         .y = v1.y + v2.y,
         .z = v1.z + v2.z,
     };
-    _ = result;
     return result;
 }
 pub fn Vector3AddValue(arg_v: Vector3, arg_add: f32) callconv(.C) Vector3 {
     var v = arg_v;
-    _ = v;
     var add = arg_add;
-    _ = add;
     var result: Vector3 = Vector3{
         .x = v.x + add,
         .y = v.y + add,
         .z = v.z + add,
     };
-    _ = result;
     return result;
 }
 pub fn Vector3Subtract(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) Vector3 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector3 = Vector3{
         .x = v1.x - v2.x,
         .y = v1.y - v2.y,
         .z = v1.z - v2.z,
     };
-    _ = result;
     return result;
 }
 pub fn Vector3SubtractValue(arg_v: Vector3, arg_sub: f32) callconv(.C) Vector3 {
     var v = arg_v;
-    _ = v;
     var sub = arg_sub;
-    _ = sub;
     var result: Vector3 = Vector3{
         .x = v.x - sub,
         .y = v.y - sub,
         .z = v.z - sub,
     };
-    _ = result;
     return result;
 }
 pub fn Vector3Scale(arg_v: Vector3, arg_scalar: f32) callconv(.C) Vector3 {
     var v = arg_v;
-    _ = v;
     var scalar = arg_scalar;
-    _ = scalar;
     var result: Vector3 = Vector3{
         .x = v.x * scalar,
         .y = v.y * scalar,
         .z = v.z * scalar,
     };
-    _ = result;
     return result;
 }
 pub fn Vector3Multiply(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) Vector3 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector3 = Vector3{
         .x = v1.x * v2.x,
         .y = v1.y * v2.y,
         .z = v1.z * v2.z,
     };
-    _ = result;
     return result;
 }
 pub fn Vector3CrossProduct(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) Vector3 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector3 = Vector3{
         .x = (v1.y * v2.z) - (v1.z * v2.y),
         .y = (v1.z * v2.x) - (v1.x * v2.z),
         .z = (v1.x * v2.y) - (v1.y * v2.x),
     };
-    _ = result;
     return result;
 }
 pub fn Vector3Perpendicular(arg_v: Vector3) callconv(.C) Vector3 {
     var v = arg_v;
-    _ = v;
     var result: Vector3 = Vector3{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
     };
-    _ = result;
     var min: f32 = @floatCast(f32, fabs(@floatCast(f64, v.x)));
-    _ = min;
     var cardinalAxis: Vector3 = Vector3{
         .x = 1.0,
         .y = 0.0,
         .z = 0.0,
     };
-    _ = cardinalAxis;
     if (fabs(@floatCast(f64, v.y)) < @floatCast(f64, min)) {
         min = @floatCast(f32, fabs(@floatCast(f64, v.y)));
         var tmp: Vector3 = Vector3{
@@ -1961,7 +1858,6 @@ pub fn Vector3Perpendicular(arg_v: Vector3) callconv(.C) Vector3 {
             .y = 1.0,
             .z = 0.0,
         };
-        _ = tmp;
         cardinalAxis = tmp;
     }
     if (fabs(@floatCast(f64, v.z)) < @floatCast(f64, min)) {
@@ -1970,81 +1866,58 @@ pub fn Vector3Perpendicular(arg_v: Vector3) callconv(.C) Vector3 {
             .y = 0.0,
             .z = 1.0,
         };
-        _ = tmp;
         cardinalAxis = tmp;
     }
     result = Vector3CrossProduct(v, cardinalAxis);
     return result;
 }
 pub fn Vector3Length(v: Vector3) callconv(.C) f32 {
-    _ = v;
     var result: f32 = sqrtf(((v.x * v.x) + (v.y * v.y)) + (v.z * v.z));
-    _ = result;
     return result;
 }
 pub fn Vector3LengthSqr(v: Vector3) callconv(.C) f32 {
-    _ = v;
     var result: f32 = ((v.x * v.x) + (v.y * v.y)) + (v.z * v.z);
-    _ = result;
     return result;
 }
 pub fn Vector3DotProduct(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) f32 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: f32 = ((v1.x * v2.x) + (v1.y * v2.y)) + (v1.z * v2.z);
-    _ = result;
     return result;
 }
 pub fn Vector3Distance(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) f32 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var dx: f32 = v2.x - v1.x;
-    _ = dx;
     var dy: f32 = v2.y - v1.y;
-    _ = dy;
     var dz: f32 = v2.z - v1.z;
-    _ = dz;
     var result: f32 = sqrtf(((dx * dx) + (dy * dy)) + (dz * dz));
-    _ = result;
     return result;
 }
 pub fn Vector3Negate(arg_v: Vector3) callconv(.C) Vector3 {
     var v = arg_v;
-    _ = v;
     var result: Vector3 = Vector3{
         .x = -v.x,
         .y = -v.y,
         .z = -v.z,
     };
-    _ = result;
     return result;
 }
 pub fn Vector3Divide(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) Vector3 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector3 = Vector3{
         .x = v1.x / v2.x,
         .y = v1.y / v2.y,
         .z = v1.z / v2.z,
     };
-    _ = result;
     return result;
 }
 pub fn Vector3Normalize(arg_v: Vector3) callconv(.C) Vector3 {
     var v = arg_v;
-    _ = v;
     var result: Vector3 = v;
-    _ = result;
     var length: f32 = undefined;
-    _ = length;
     var ilength: f32 = undefined;
-    _ = ilength;
     length = Vector3Length(v);
     if (length == 0.0) {
         length = 1.0;
@@ -2057,32 +1930,23 @@ pub fn Vector3Normalize(arg_v: Vector3) callconv(.C) Vector3 {
 }
 pub fn Vector3OrthoNormalize(arg_v1: [*c]Vector3, arg_v2: [*c]Vector3) callconv(.C) void {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     v1.* = Vector3Normalize(v1.*);
     var vn: Vector3 = Vector3CrossProduct(v1.*, v2.*);
-    _ = vn;
     vn = Vector3Normalize(vn);
     v2.* = Vector3CrossProduct(vn, v1.*);
 }
 pub fn Vector3Transform(arg_v: Vector3, arg_mat: Matrix) callconv(.C) Vector3 {
     var v = arg_v;
-    _ = v;
     var mat = arg_mat;
-    _ = mat;
     var result: Vector3 = Vector3{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
     };
-    _ = result;
     var x: f32 = v.x;
-    _ = x;
     var y: f32 = v.y;
-    _ = y;
     var z: f32 = v.z;
-    _ = z;
     result.x = (((mat.m0 * x) + (mat.m4 * y)) + (mat.m8 * z)) + mat.m12;
     result.y = (((mat.m1 * x) + (mat.m5 * y)) + (mat.m9 * z)) + mat.m13;
     result.z = (((mat.m2 * x) + (mat.m6 * y)) + (mat.m10 * z)) + mat.m14;
@@ -2090,15 +1954,12 @@ pub fn Vector3Transform(arg_v: Vector3, arg_mat: Matrix) callconv(.C) Vector3 {
 }
 pub fn Vector3RotateByQuaternion(arg_v: Vector3, arg_q: Quaternion) callconv(.C) Vector3 {
     var v = arg_v;
-    _ = v;
     var q = arg_q;
-    _ = q;
     var result: Vector3 = Vector3{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
     };
-    _ = result;
     result.x = ((v.x * ((((q.x * q.x) + (q.w * q.w)) - (q.y * q.y)) - (q.z * q.z))) + (v.y * (((@intToFloat(f32, @as(c_int, 2)) * q.x) * q.y) - ((@intToFloat(f32, @as(c_int, 2)) * q.w) * q.z)))) + (v.z * (((@intToFloat(f32, @as(c_int, 2)) * q.x) * q.z) + ((@intToFloat(f32, @as(c_int, 2)) * q.w) * q.y)));
     result.y = ((v.x * (((@intToFloat(f32, @as(c_int, 2)) * q.w) * q.z) + ((@intToFloat(f32, @as(c_int, 2)) * q.x) * q.y))) + (v.y * ((((q.w * q.w) - (q.x * q.x)) + (q.y * q.y)) - (q.z * q.z)))) + (v.z * (((@intToFloat(f32, -@as(c_int, 2)) * q.w) * q.x) + ((@intToFloat(f32, @as(c_int, 2)) * q.y) * q.z)));
     result.z = ((v.x * (((@intToFloat(f32, -@as(c_int, 2)) * q.w) * q.y) + ((@intToFloat(f32, @as(c_int, 2)) * q.x) * q.z))) + (v.y * (((@intToFloat(f32, @as(c_int, 2)) * q.w) * q.x) + ((@intToFloat(f32, @as(c_int, 2)) * q.y) * q.z)))) + (v.z * ((((q.w * q.w) - (q.x * q.x)) - (q.y * q.y)) + (q.z * q.z)));
@@ -2106,17 +1967,13 @@ pub fn Vector3RotateByQuaternion(arg_v: Vector3, arg_q: Quaternion) callconv(.C)
 }
 pub fn Vector3Lerp(arg_v1: Vector3, arg_v2: Vector3, arg_amount: f32) callconv(.C) Vector3 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var amount = arg_amount;
-    _ = amount;
     var result: Vector3 = Vector3{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
     };
-    _ = result;
     result.x = v1.x + (amount * (v2.x - v1.x));
     result.y = v1.y + (amount * (v2.y - v1.y));
     result.z = v1.z + (amount * (v2.z - v1.z));
@@ -2124,17 +1981,13 @@ pub fn Vector3Lerp(arg_v1: Vector3, arg_v2: Vector3, arg_amount: f32) callconv(.
 }
 pub fn Vector3Reflect(arg_v: Vector3, arg_normal: Vector3) callconv(.C) Vector3 {
     var v = arg_v;
-    _ = v;
     var normal = arg_normal;
-    _ = normal;
     var result: Vector3 = Vector3{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
     };
-    _ = result;
     var dotProduct: f32 = Vector3DotProduct(v, normal);
-    _ = dotProduct;
     result.x = v.x - ((2.0 * normal.x) * dotProduct);
     result.y = v.y - ((2.0 * normal.y) * dotProduct);
     result.z = v.z - ((2.0 * normal.z) * dotProduct);
@@ -2142,15 +1995,12 @@ pub fn Vector3Reflect(arg_v: Vector3, arg_normal: Vector3) callconv(.C) Vector3 
 }
 pub fn Vector3Min(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) Vector3 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector3 = Vector3{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
     };
-    _ = result;
     result.x = fminf(v1.x, v2.x);
     result.y = fminf(v1.y, v2.y);
     result.z = fminf(v1.z, v2.z);
@@ -2158,15 +2008,12 @@ pub fn Vector3Min(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) Vector3 {
 }
 pub fn Vector3Max(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) Vector3 {
     var v1 = arg_v1;
-    _ = v1;
     var v2 = arg_v2;
-    _ = v2;
     var result: Vector3 = Vector3{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
     };
-    _ = result;
     result.x = fmaxf(v1.x, v2.x);
     result.y = fmaxf(v1.y, v2.y);
     result.z = fmaxf(v1.z, v2.z);
@@ -2174,37 +2021,23 @@ pub fn Vector3Max(arg_v1: Vector3, arg_v2: Vector3) callconv(.C) Vector3 {
 }
 pub fn Vector3Barycenter(arg_p: Vector3, arg_a: Vector3, arg_b: Vector3, arg_c: Vector3) callconv(.C) Vector3 {
     var p = arg_p;
-    _ = p;
     var a = arg_a;
-    _ = a;
     var b = arg_b;
-    _ = b;
     var c = arg_c;
-    _ = c;
     var v0: Vector3 = Vector3Subtract(b, a);
-    _ = v0;
     var v1: Vector3 = Vector3Subtract(c, a);
-    _ = v1;
     var v2: Vector3 = Vector3Subtract(p, a);
-    _ = v2;
     var d00: f32 = Vector3DotProduct(v0, v0);
-    _ = d00;
     var d01: f32 = Vector3DotProduct(v0, v1);
-    _ = d01;
     var d11: f32 = Vector3DotProduct(v1, v1);
-    _ = d11;
     var d20: f32 = Vector3DotProduct(v2, v0);
-    _ = d20;
     var d21: f32 = Vector3DotProduct(v2, v1);
-    _ = d21;
     var denom: f32 = (d00 * d11) - (d01 * d01);
-    _ = denom;
     var result: Vector3 = Vector3{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
     };
-    _ = result;
     result.y = ((d11 * d20) - (d01 * d21)) / denom;
     result.z = ((d00 * d21) - (d01 * d20)) / denom;
     result.x = 1.0 - (result.z + result.y);
@@ -2212,13 +2045,11 @@ pub fn Vector3Barycenter(arg_p: Vector3, arg_a: Vector3, arg_b: Vector3, arg_c: 
 }
 pub fn Vector3ToFloatV(arg_v: Vector3) callconv(.C) float3 {
     var v = arg_v;
-    _ = v;
     var buffer: float3 = float3{
         .v = [1]f32{
             0,
         } ++ [1]f32{0} ** 2,
     };
-    _ = buffer;
     buffer.v[@intCast(c_uint, @as(c_int, 0))] = v.x;
     buffer.v[@intCast(c_uint, @as(c_int, 1))] = v.y;
     buffer.v[@intCast(c_uint, @as(c_int, 2))] = v.z;
@@ -2226,53 +2057,32 @@ pub fn Vector3ToFloatV(arg_v: Vector3) callconv(.C) float3 {
 }
 pub fn MatrixDeterminant(arg_mat: Matrix) callconv(.C) f32 {
     var mat = arg_mat;
-    _ = mat;
     var a00: f32 = mat.m0;
-    _ = a00;
     var a01: f32 = mat.m1;
-    _ = a01;
     var a02: f32 = mat.m2;
-    _ = a02;
     var a03: f32 = mat.m3;
-    _ = a03;
     var a10: f32 = mat.m4;
-    _ = a10;
     var a11: f32 = mat.m5;
-    _ = a11;
     var a12: f32 = mat.m6;
-    _ = a12;
     var a13: f32 = mat.m7;
-    _ = a13;
     var a20: f32 = mat.m8;
-    _ = a20;
     var a21: f32 = mat.m9;
-    _ = a21;
     var a22: f32 = mat.m10;
-    _ = a22;
     var a23: f32 = mat.m11;
-    _ = a23;
     var a30: f32 = mat.m12;
-    _ = a30;
     var a31: f32 = mat.m13;
-    _ = a31;
     var a32: f32 = mat.m14;
-    _ = a32;
     var a33: f32 = mat.m15;
-    _ = a33;
     var result: f32 = (((((((((((((((((((((((((a30 * a21) * a12) * a03) - (((a20 * a31) * a12) * a03)) - (((a30 * a11) * a22) * a03)) + (((a10 * a31) * a22) * a03)) + (((a20 * a11) * a32) * a03)) - (((a10 * a21) * a32) * a03)) - (((a30 * a21) * a02) * a13)) + (((a20 * a31) * a02) * a13)) + (((a30 * a01) * a22) * a13)) - (((a00 * a31) * a22) * a13)) - (((a20 * a01) * a32) * a13)) + (((a00 * a21) * a32) * a13)) + (((a30 * a11) * a02) * a23)) - (((a10 * a31) * a02) * a23)) - (((a30 * a01) * a12) * a23)) + (((a00 * a31) * a12) * a23)) + (((a10 * a01) * a32) * a23)) - (((a00 * a11) * a32) * a23)) - (((a20 * a11) * a02) * a33)) + (((a10 * a21) * a02) * a33)) + (((a20 * a01) * a12) * a33)) - (((a00 * a21) * a12) * a33)) - (((a10 * a01) * a22) * a33)) + (((a00 * a11) * a22) * a33);
-    _ = result;
     return result;
 }
 pub fn MatrixTrace(arg_mat: Matrix) callconv(.C) f32 {
     var mat = arg_mat;
-    _ = mat;
     var result: f32 = ((mat.m0 + mat.m5) + mat.m10) + mat.m15;
-    _ = result;
     return result;
 }
 pub fn MatrixTranspose(arg_mat: Matrix) callconv(.C) Matrix {
     var mat = arg_mat;
-    _ = mat;
     var result: Matrix = Matrix{
         .m0 = @intToFloat(f32, @as(c_int, 0)),
         .m4 = 0,
@@ -2291,7 +2101,6 @@ pub fn MatrixTranspose(arg_mat: Matrix) callconv(.C) Matrix {
         .m11 = 0,
         .m15 = 0,
     };
-    _ = result;
     result.m0 = mat.m0;
     result.m1 = mat.m4;
     result.m2 = mat.m8;
@@ -2312,7 +2121,6 @@ pub fn MatrixTranspose(arg_mat: Matrix) callconv(.C) Matrix {
 }
 pub fn MatrixInvert(arg_mat: Matrix) callconv(.C) Matrix {
     var mat = arg_mat;
-    _ = mat;
     var result: Matrix = Matrix{
         .m0 = @intToFloat(f32, @as(c_int, 0)),
         .m4 = 0,
@@ -2331,65 +2139,35 @@ pub fn MatrixInvert(arg_mat: Matrix) callconv(.C) Matrix {
         .m11 = 0,
         .m15 = 0,
     };
-    _ = result;
     var a00: f32 = mat.m0;
-    _ = a00;
     var a01: f32 = mat.m1;
-    _ = a01;
     var a02: f32 = mat.m2;
-    _ = a02;
     var a03: f32 = mat.m3;
-    _ = a03;
     var a10: f32 = mat.m4;
-    _ = a10;
     var a11: f32 = mat.m5;
-    _ = a11;
     var a12: f32 = mat.m6;
-    _ = a12;
     var a13: f32 = mat.m7;
-    _ = a13;
     var a20: f32 = mat.m8;
-    _ = a20;
     var a21: f32 = mat.m9;
-    _ = a21;
     var a22: f32 = mat.m10;
-    _ = a22;
     var a23: f32 = mat.m11;
-    _ = a23;
     var a30: f32 = mat.m12;
-    _ = a30;
     var a31: f32 = mat.m13;
-    _ = a31;
     var a32: f32 = mat.m14;
-    _ = a32;
     var a33: f32 = mat.m15;
-    _ = a33;
     var b00: f32 = (a00 * a11) - (a01 * a10);
-    _ = b00;
     var b01: f32 = (a00 * a12) - (a02 * a10);
-    _ = b01;
     var b02: f32 = (a00 * a13) - (a03 * a10);
-    _ = b02;
     var b03: f32 = (a01 * a12) - (a02 * a11);
-    _ = b03;
     var b04: f32 = (a01 * a13) - (a03 * a11);
-    _ = b04;
     var b05: f32 = (a02 * a13) - (a03 * a12);
-    _ = b05;
     var b06: f32 = (a20 * a31) - (a21 * a30);
-    _ = b06;
     var b07: f32 = (a20 * a32) - (a22 * a30);
-    _ = b07;
     var b08: f32 = (a20 * a33) - (a23 * a30);
-    _ = b08;
     var b09: f32 = (a21 * a32) - (a22 * a31);
-    _ = b09;
     var b10: f32 = (a21 * a33) - (a23 * a31);
-    _ = b10;
     var b11: f32 = (a22 * a33) - (a23 * a32);
-    _ = b11;
     var invDet: f32 = 1.0 / ((((((b00 * b11) - (b01 * b10)) + (b02 * b09)) + (b03 * b08)) - (b04 * b07)) + (b05 * b06));
-    _ = invDet;
     result.m0 = (((a11 * b11) - (a12 * b10)) + (a13 * b09)) * invDet;
     result.m1 = (((-a01 * b11) + (a02 * b10)) - (a03 * b09)) * invDet;
     result.m2 = (((a31 * b05) - (a32 * b04)) + (a33 * b03)) * invDet;
@@ -2410,7 +2188,6 @@ pub fn MatrixInvert(arg_mat: Matrix) callconv(.C) Matrix {
 }
 pub fn MatrixNormalize(arg_mat: Matrix) callconv(.C) Matrix {
     var mat = arg_mat;
-    _ = mat;
     var result: Matrix = Matrix{
         .m0 = @intToFloat(f32, @as(c_int, 0)),
         .m4 = 0,
@@ -2429,9 +2206,7 @@ pub fn MatrixNormalize(arg_mat: Matrix) callconv(.C) Matrix {
         .m11 = 0,
         .m15 = 0,
     };
-    _ = result;
     var det: f32 = MatrixDeterminant(mat);
-    _ = det;
     result.m0 = mat.m0 / det;
     result.m1 = mat.m1 / det;
     result.m2 = mat.m2 / det;
@@ -2469,16 +2244,12 @@ pub fn MatrixIdentity() callconv(.C) Matrix {
         .m11 = 0.0,
         .m15 = 1.0,
     };
-    _ = result;
     return result;
 }
 pub fn MatrixAdd(arg_left: Matrix, arg_right: Matrix) callconv(.C) Matrix {
     var left = arg_left;
-    _ = left;
     var right = arg_right;
-    _ = right;
     var result: Matrix = MatrixIdentity();
-    _ = result;
     result.m0 = left.m0 + right.m0;
     result.m1 = left.m1 + right.m1;
     result.m2 = left.m2 + right.m2;
@@ -2499,11 +2270,8 @@ pub fn MatrixAdd(arg_left: Matrix, arg_right: Matrix) callconv(.C) Matrix {
 }
 pub fn MatrixSubtract(arg_left: Matrix, arg_right: Matrix) callconv(.C) Matrix {
     var left = arg_left;
-    _ = left;
     var right = arg_right;
-    _ = right;
     var result: Matrix = MatrixIdentity();
-    _ = result;
     result.m0 = left.m0 - right.m0;
     result.m1 = left.m1 - right.m1;
     result.m2 = left.m2 - right.m2;
@@ -2524,9 +2292,7 @@ pub fn MatrixSubtract(arg_left: Matrix, arg_right: Matrix) callconv(.C) Matrix {
 }
 pub fn MatrixMultiply(arg_left: Matrix, arg_right: Matrix) callconv(.C) Matrix {
     var left = arg_left;
-    _ = left;
     var right = arg_right;
-    _ = right;
     var result: Matrix = Matrix{
         .m0 = @intToFloat(f32, @as(c_int, 0)),
         .m4 = 0,
@@ -2545,7 +2311,6 @@ pub fn MatrixMultiply(arg_left: Matrix, arg_right: Matrix) callconv(.C) Matrix {
         .m11 = 0,
         .m15 = 0,
     };
-    _ = result;
     result.m0 = (((left.m0 * right.m0) + (left.m1 * right.m4)) + (left.m2 * right.m8)) + (left.m3 * right.m12);
     result.m1 = (((left.m0 * right.m1) + (left.m1 * right.m5)) + (left.m2 * right.m9)) + (left.m3 * right.m13);
     result.m2 = (((left.m0 * right.m2) + (left.m1 * right.m6)) + (left.m2 * right.m10)) + (left.m3 * right.m14);
@@ -2566,11 +2331,8 @@ pub fn MatrixMultiply(arg_left: Matrix, arg_right: Matrix) callconv(.C) Matrix {
 }
 pub fn MatrixTranslate(arg_x: f32, arg_y: f32, arg_z: f32) callconv(.C) Matrix {
     var x = arg_x;
-    _ = x;
     var y = arg_y;
-    _ = y;
     var z = arg_z;
-    _ = z;
     var result: Matrix = Matrix{
         .m0 = 1.0,
         .m4 = 0.0,
@@ -2589,14 +2351,11 @@ pub fn MatrixTranslate(arg_x: f32, arg_y: f32, arg_z: f32) callconv(.C) Matrix {
         .m11 = 0.0,
         .m15 = 1.0,
     };
-    _ = result;
     return result;
 }
 pub fn MatrixRotate(arg_axis: Vector3, arg_angle: f32) callconv(.C) Matrix {
     var axis = arg_axis;
-    _ = axis;
     var angle = arg_angle;
-    _ = angle;
     var result: Matrix = Matrix{
         .m0 = @intToFloat(f32, @as(c_int, 0)),
         .m4 = 0,
@@ -2615,28 +2374,19 @@ pub fn MatrixRotate(arg_axis: Vector3, arg_angle: f32) callconv(.C) Matrix {
         .m11 = 0,
         .m15 = 0,
     };
-    _ = result;
     var x: f32 = axis.x;
-    _ = x;
     var y: f32 = axis.y;
-    _ = y;
     var z: f32 = axis.z;
-    _ = z;
     var lengthSquared: f32 = ((x * x) + (y * y)) + (z * z);
-    _ = lengthSquared;
     if ((lengthSquared != 1.0) and (lengthSquared != 0.0)) {
         var inverseLength: f32 = 1.0 / sqrtf(lengthSquared);
-        _ = inverseLength;
         x *= inverseLength;
         y *= inverseLength;
         z *= inverseLength;
     }
     var sinres: f32 = sinf(angle);
-    _ = sinres;
     var cosres: f32 = cosf(angle);
-    _ = cosres;
     var t: f32 = 1.0 - cosres;
-    _ = t;
     result.m0 = ((x * x) * t) + cosres;
     result.m1 = ((y * x) * t) + (z * sinres);
     result.m2 = ((z * x) * t) - (y * sinres);
@@ -2657,13 +2407,9 @@ pub fn MatrixRotate(arg_axis: Vector3, arg_angle: f32) callconv(.C) Matrix {
 }
 pub fn MatrixRotateX(arg_angle: f32) callconv(.C) Matrix {
     var angle = arg_angle;
-    _ = angle;
     var result: Matrix = MatrixIdentity();
-    _ = result;
     var cosres: f32 = cosf(angle);
-    _ = cosres;
     var sinres: f32 = sinf(angle);
-    _ = sinres;
     result.m5 = cosres;
     result.m6 = -sinres;
     result.m9 = sinres;
@@ -2672,13 +2418,9 @@ pub fn MatrixRotateX(arg_angle: f32) callconv(.C) Matrix {
 }
 pub fn MatrixRotateY(arg_angle: f32) callconv(.C) Matrix {
     var angle = arg_angle;
-    _ = angle;
     var result: Matrix = MatrixIdentity();
-    _ = result;
     var cosres: f32 = cosf(angle);
-    _ = cosres;
     var sinres: f32 = sinf(angle);
-    _ = sinres;
     result.m0 = cosres;
     result.m2 = sinres;
     result.m8 = -sinres;
@@ -2687,13 +2429,9 @@ pub fn MatrixRotateY(arg_angle: f32) callconv(.C) Matrix {
 }
 pub fn MatrixRotateZ(arg_angle: f32) callconv(.C) Matrix {
     var angle = arg_angle;
-    _ = angle;
     var result: Matrix = MatrixIdentity();
-    _ = result;
     var cosres: f32 = cosf(angle);
-    _ = cosres;
     var sinres: f32 = sinf(angle);
-    _ = sinres;
     result.m0 = cosres;
     result.m1 = -sinres;
     result.m4 = sinres;
@@ -2702,21 +2440,13 @@ pub fn MatrixRotateZ(arg_angle: f32) callconv(.C) Matrix {
 }
 pub fn MatrixRotateXYZ(arg_ang: Vector3) callconv(.C) Matrix {
     var ang = arg_ang;
-    _ = ang;
     var result: Matrix = MatrixIdentity();
-    _ = result;
     var cosz: f32 = cosf(-ang.z);
-    _ = cosz;
     var sinz: f32 = sinf(-ang.z);
-    _ = sinz;
     var cosy: f32 = cosf(-ang.y);
-    _ = cosy;
     var siny: f32 = sinf(-ang.y);
-    _ = siny;
     var cosx: f32 = cosf(-ang.x);
-    _ = cosx;
     var sinx: f32 = sinf(-ang.x);
-    _ = sinx;
     result.m0 = cosz * cosy;
     result.m4 = ((cosz * siny) * sinx) - (sinz * cosx);
     result.m8 = ((cosz * siny) * cosx) + (sinz * sinx);
@@ -2730,7 +2460,6 @@ pub fn MatrixRotateXYZ(arg_ang: Vector3) callconv(.C) Matrix {
 }
 pub fn MatrixRotateZYX(arg_ang: Vector3) callconv(.C) Matrix {
     var ang = arg_ang;
-    _ = ang;
     var result: Matrix = Matrix{
         .m0 = @intToFloat(f32, @as(c_int, 0)),
         .m4 = 0,
@@ -2749,19 +2478,12 @@ pub fn MatrixRotateZYX(arg_ang: Vector3) callconv(.C) Matrix {
         .m11 = 0,
         .m15 = 0,
     };
-    _ = result;
     var cz: f32 = cosf(ang.z);
-    _ = cz;
     var sz: f32 = sinf(ang.z);
-    _ = sz;
     var cy: f32 = cosf(ang.y);
-    _ = cy;
     var sy: f32 = sinf(ang.y);
-    _ = sy;
     var cx: f32 = cosf(ang.x);
-    _ = cx;
     var sx: f32 = sinf(ang.x);
-    _ = sx;
     result.m0 = cz * cy;
     result.m1 = ((cz * sy) * sx) - (cx * sz);
     result.m2 = (sz * sx) + ((cz * cx) * sy);
@@ -2782,11 +2504,8 @@ pub fn MatrixRotateZYX(arg_ang: Vector3) callconv(.C) Matrix {
 }
 pub fn MatrixScale(arg_x: f32, arg_y: f32, arg_z: f32) callconv(.C) Matrix {
     var x = arg_x;
-    _ = x;
     var y = arg_y;
-    _ = y;
     var z = arg_z;
-    _ = z;
     var result: Matrix = Matrix{
         .m0 = x,
         .m4 = 0.0,
@@ -2805,22 +2524,15 @@ pub fn MatrixScale(arg_x: f32, arg_y: f32, arg_z: f32) callconv(.C) Matrix {
         .m11 = 0.0,
         .m15 = 1.0,
     };
-    _ = result;
     return result;
 }
 pub fn MatrixFrustum(arg_left: f64, arg_right: f64, arg_bottom: f64, arg_top: f64, arg_near: f64, arg_far: f64) callconv(.C) Matrix {
     var left = arg_left;
-    _ = left;
     var right = arg_right;
-    _ = right;
     var bottom = arg_bottom;
-    _ = bottom;
     var top = arg_top;
-    _ = top;
     var near = arg_near;
-    _ = near;
     var far = arg_far;
-    _ = far;
     var result: Matrix = Matrix{
         .m0 = @intToFloat(f32, @as(c_int, 0)),
         .m4 = 0,
@@ -2839,13 +2551,9 @@ pub fn MatrixFrustum(arg_left: f64, arg_right: f64, arg_bottom: f64, arg_top: f6
         .m11 = 0,
         .m15 = 0,
     };
-    _ = result;
     var rl: f32 = @floatCast(f32, right - left);
-    _ = rl;
     var tb: f32 = @floatCast(f32, top - bottom);
-    _ = tb;
     var @"fn": f32 = @floatCast(f32, far - near);
-    _ = @"fn";
     result.m0 = (@floatCast(f32, near) * 2.0) / rl;
     result.m1 = 0.0;
     result.m2 = 0.0;
@@ -2866,34 +2574,21 @@ pub fn MatrixFrustum(arg_left: f64, arg_right: f64, arg_bottom: f64, arg_top: f6
 }
 pub fn MatrixPerspective(arg_fovy: f64, arg_aspect: f64, arg_near: f64, arg_far: f64) callconv(.C) Matrix {
     var fovy = arg_fovy;
-    _ = fovy;
     var aspect = arg_aspect;
-    _ = aspect;
     var near = arg_near;
-    _ = near;
     var far = arg_far;
-    _ = far;
     var top: f64 = near * tan(fovy * 0.5);
-    _ = top;
     var right: f64 = top * aspect;
-    _ = right;
     var result: Matrix = MatrixFrustum(-right, right, -top, top, near, far);
-    _ = result;
     return result;
 }
 pub fn MatrixOrtho(arg_left: f64, arg_right: f64, arg_bottom: f64, arg_top: f64, arg_near: f64, arg_far: f64) callconv(.C) Matrix {
     var left = arg_left;
-    _ = left;
     var right = arg_right;
-    _ = right;
     var bottom = arg_bottom;
-    _ = bottom;
     var top = arg_top;
-    _ = top;
     var near = arg_near;
-    _ = near;
     var far = arg_far;
-    _ = far;
     var result: Matrix = Matrix{
         .m0 = @intToFloat(f32, @as(c_int, 0)),
         .m4 = 0,
@@ -2912,13 +2607,9 @@ pub fn MatrixOrtho(arg_left: f64, arg_right: f64, arg_bottom: f64, arg_top: f64,
         .m11 = 0,
         .m15 = 0,
     };
-    _ = result;
     var rl: f32 = @floatCast(f32, right - left);
-    _ = rl;
     var tb: f32 = @floatCast(f32, top - bottom);
-    _ = tb;
     var @"fn": f32 = @floatCast(f32, far - near);
-    _ = @"fn";
     result.m0 = 2.0 / rl;
     result.m1 = 0.0;
     result.m2 = 0.0;
@@ -2939,11 +2630,8 @@ pub fn MatrixOrtho(arg_left: f64, arg_right: f64, arg_bottom: f64, arg_top: f64,
 }
 pub fn MatrixLookAt(arg_eye: Vector3, arg_target: Vector3, arg_up: Vector3) callconv(.C) Matrix {
     var eye = arg_eye;
-    _ = eye;
     var target = arg_target;
-    _ = target;
     var up = arg_up;
-    _ = up;
     var result: Matrix = Matrix{
         .m0 = @intToFloat(f32, @as(c_int, 0)),
         .m4 = 0,
@@ -2962,15 +2650,11 @@ pub fn MatrixLookAt(arg_eye: Vector3, arg_target: Vector3, arg_up: Vector3) call
         .m11 = 0,
         .m15 = 0,
     };
-    _ = result;
     var z: Vector3 = Vector3Subtract(eye, target);
-    _ = z;
     z = Vector3Normalize(z);
     var x: Vector3 = Vector3CrossProduct(up, z);
-    _ = x;
     x = Vector3Normalize(x);
     var y: Vector3 = Vector3CrossProduct(z, x);
-    _ = y;
     result.m0 = x.x;
     result.m1 = y.x;
     result.m2 = z.x;
@@ -2991,13 +2675,11 @@ pub fn MatrixLookAt(arg_eye: Vector3, arg_target: Vector3, arg_up: Vector3) call
 }
 pub fn MatrixToFloatV(arg_mat: Matrix) callconv(.C) float16 {
     var mat = arg_mat;
-    _ = mat;
     var buffer: float16 = float16{
         .v = [1]f32{
             0,
         } ++ [1]f32{0} ** 15,
     };
-    _ = buffer;
     buffer.v[@intCast(c_uint, @as(c_int, 0))] = mat.m0;
     buffer.v[@intCast(c_uint, @as(c_int, 1))] = mat.m1;
     buffer.v[@intCast(c_uint, @as(c_int, 2))] = mat.m2;
@@ -3018,58 +2700,46 @@ pub fn MatrixToFloatV(arg_mat: Matrix) callconv(.C) float16 {
 }
 pub fn QuaternionAdd(arg_q1: Quaternion, arg_q2: Quaternion) callconv(.C) Quaternion {
     var q1 = arg_q1;
-    _ = q1;
     var q2 = arg_q2;
-    _ = q2;
     var result: Quaternion = Quaternion{
         .x = q1.x + q2.x,
         .y = q1.y + q2.y,
         .z = q1.z + q2.z,
         .w = q1.w + q2.w,
     };
-    _ = result;
     return result;
 }
 pub fn QuaternionAddValue(arg_q: Quaternion, arg_add: f32) callconv(.C) Quaternion {
     var q = arg_q;
-    _ = q;
     var add = arg_add;
-    _ = add;
     var result: Quaternion = Quaternion{
         .x = q.x + add,
         .y = q.y + add,
         .z = q.z + add,
         .w = q.w + add,
     };
-    _ = result;
     return result;
 }
 pub fn QuaternionSubtract(arg_q1: Quaternion, arg_q2: Quaternion) callconv(.C) Quaternion {
     var q1 = arg_q1;
-    _ = q1;
     var q2 = arg_q2;
-    _ = q2;
     var result: Quaternion = Quaternion{
         .x = q1.x - q2.x,
         .y = q1.y - q2.y,
         .z = q1.z - q2.z,
         .w = q1.w - q2.w,
     };
-    _ = result;
     return result;
 }
 pub fn QuaternionSubtractValue(arg_q: Quaternion, arg_sub: f32) callconv(.C) Quaternion {
     var q = arg_q;
-    _ = q;
     var sub = arg_sub;
-    _ = sub;
     var result: Quaternion = Quaternion{
         .x = q.x - sub,
         .y = q.y - sub,
         .z = q.z - sub,
         .w = q.w - sub,
     };
-    _ = result;
     return result;
 }
 pub fn QuaternionIdentity() callconv(.C) Quaternion {
@@ -3079,30 +2749,23 @@ pub fn QuaternionIdentity() callconv(.C) Quaternion {
         .z = 0.0,
         .w = 1.0,
     };
-    _ = result;
     return result;
 }
 pub fn QuaternionLength(arg_q: Quaternion) callconv(.C) f32 {
     var q = arg_q;
-    _ = q;
     var result: f32 = sqrtf((((q.x * q.x) + (q.y * q.y)) + (q.z * q.z)) + (q.w * q.w));
-    _ = result;
     return result;
 }
 pub fn QuaternionNormalize(arg_q: Quaternion) callconv(.C) Quaternion {
     var q = arg_q;
-    _ = q;
     var result: Quaternion = Quaternion{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
         .w = 0,
     };
-    _ = result;
     var length: f32 = undefined;
-    _ = length;
     var ilength: f32 = undefined;
-    _ = ilength;
     length = QuaternionLength(q);
     if (length == 0.0) {
         length = 1.0;
@@ -3116,16 +2779,11 @@ pub fn QuaternionNormalize(arg_q: Quaternion) callconv(.C) Quaternion {
 }
 pub fn QuaternionInvert(arg_q: Quaternion) callconv(.C) Quaternion {
     var q = arg_q;
-    _ = q;
     var result: Quaternion = q;
-    _ = result;
     var length: f32 = QuaternionLength(q);
-    _ = length;
     var lengthSq: f32 = length * length;
-    _ = lengthSq;
     if (@floatCast(f64, lengthSq) != 0.0) {
         var i: f32 = 1.0 / lengthSq;
-        _ = i;
         result.x *= -i;
         result.y *= -i;
         result.z *= -i;
@@ -3135,32 +2793,21 @@ pub fn QuaternionInvert(arg_q: Quaternion) callconv(.C) Quaternion {
 }
 pub fn QuaternionMultiply(arg_q1: Quaternion, arg_q2: Quaternion) callconv(.C) Quaternion {
     var q1 = arg_q1;
-    _ = q1;
     var q2 = arg_q2;
-    _ = q2;
     var result: Quaternion = Quaternion{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
         .w = 0,
     };
-    _ = result;
     var qax: f32 = q1.x;
-    _ = qax;
     var qay: f32 = q1.y;
-    _ = qay;
     var qaz: f32 = q1.z;
-    _ = qaz;
     var qaw: f32 = q1.w;
-    _ = qaw;
     var qbx: f32 = q2.x;
-    _ = qbx;
     var qby: f32 = q2.y;
-    _ = qby;
     var qbz: f32 = q2.z;
-    _ = qbz;
     var qbw: f32 = q2.w;
-    _ = qbw;
     result.x = (((qax * qbw) + (qaw * qbx)) + (qay * qbz)) - (qaz * qby);
     result.y = (((qay * qbw) + (qaw * qby)) + (qaz * qbx)) - (qax * qbz);
     result.z = (((qaz * qbw) + (qaw * qbz)) + (qax * qby)) - (qay * qbx);
@@ -3169,24 +2816,17 @@ pub fn QuaternionMultiply(arg_q1: Quaternion, arg_q2: Quaternion) callconv(.C) Q
 }
 pub fn QuaternionScale(arg_q: Quaternion, arg_mul: f32) callconv(.C) Quaternion {
     var q = arg_q;
-    _ = q;
     var mul = arg_mul;
-    _ = mul;
     var result: Quaternion = Quaternion{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
         .w = 0,
     };
-    _ = result;
     var qax: f32 = q.x;
-    _ = qax;
     var qay: f32 = q.y;
-    _ = qay;
     var qaz: f32 = q.z;
-    _ = qaz;
     var qaw: f32 = q.w;
-    _ = qaw;
     result.x = (((qax * mul) + (qaw * mul)) + (qay * mul)) - (qaz * mul);
     result.y = (((qay * mul) + (qaw * mul)) + (qaz * mul)) - (qax * mul);
     result.z = (((qaz * mul) + (qaw * mul)) + (qax * mul)) - (qay * mul);
@@ -3195,32 +2835,25 @@ pub fn QuaternionScale(arg_q: Quaternion, arg_mul: f32) callconv(.C) Quaternion 
 }
 pub fn QuaternionDivide(arg_q1: Quaternion, arg_q2: Quaternion) callconv(.C) Quaternion {
     var q1 = arg_q1;
-    _ = q1;
     var q2 = arg_q2;
-    _ = q2;
     var result: Quaternion = Quaternion{
         .x = q1.x / q2.x,
         .y = q1.y / q2.y,
         .z = q1.z / q2.z,
         .w = q1.w / q2.w,
     };
-    _ = result;
     return result;
 }
 pub fn QuaternionLerp(arg_q1: Quaternion, arg_q2: Quaternion, arg_amount: f32) callconv(.C) Quaternion {
     var q1 = arg_q1;
-    _ = q1;
     var q2 = arg_q2;
-    _ = q2;
     var amount = arg_amount;
-    _ = amount;
     var result: Quaternion = Quaternion{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
         .w = 0,
     };
-    _ = result;
     result.x = q1.x + (amount * (q2.x - q1.x));
     result.y = q1.y + (amount * (q2.y - q1.y));
     result.z = q1.z + (amount * (q2.z - q1.z));
@@ -3229,32 +2862,23 @@ pub fn QuaternionLerp(arg_q1: Quaternion, arg_q2: Quaternion, arg_amount: f32) c
 }
 pub fn QuaternionNlerp(arg_q1: Quaternion, arg_q2: Quaternion, arg_amount: f32) callconv(.C) Quaternion {
     var q1 = arg_q1;
-    _ = q1;
     var q2 = arg_q2;
-    _ = q2;
     var amount = arg_amount;
-    _ = amount;
     var result: Quaternion = QuaternionLerp(q1, q2, amount);
-    _ = result;
     result = QuaternionNormalize(result);
     return result;
 }
 pub fn QuaternionSlerp(arg_q1: Quaternion, arg_q2: Quaternion, arg_amount: f32) callconv(.C) Quaternion {
     var q1 = arg_q1;
-    _ = q1;
     var q2 = arg_q2;
-    _ = q2;
     var amount = arg_amount;
-    _ = amount;
     var result: Quaternion = Quaternion{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
         .w = 0,
     };
-    _ = result;
     var cosHalfTheta: f32 = (((q1.x * q2.x) + (q1.y * q2.y)) + (q1.z * q2.z)) + (q1.w * q2.w);
-    _ = cosHalfTheta;
     if (cosHalfTheta < @intToFloat(f32, @as(c_int, 0))) {
         q2.x = -q2.x;
         q2.y = -q2.y;
@@ -3268,9 +2892,7 @@ pub fn QuaternionSlerp(arg_q1: Quaternion, arg_q2: Quaternion, arg_amount: f32) 
         result = QuaternionNlerp(q1, q2, amount);
     } else {
         var halfTheta: f32 = acosf(cosHalfTheta);
-        _ = halfTheta;
         var sinHalfTheta: f32 = sqrtf(1.0 - (cosHalfTheta * cosHalfTheta));
-        _ = sinHalfTheta;
         if (fabs(@floatCast(f64, sinHalfTheta)) < @floatCast(f64, 0.0010000000474974513)) {
             result.x = (q1.x * 0.5) + (q2.x * 0.5);
             result.y = (q1.y * 0.5) + (q2.y * 0.5);
@@ -3278,9 +2900,7 @@ pub fn QuaternionSlerp(arg_q1: Quaternion, arg_q2: Quaternion, arg_amount: f32) 
             result.w = (q1.w * 0.5) + (q2.w * 0.5);
         } else {
             var ratioA: f32 = sinf((@intToFloat(f32, @as(c_int, 1)) - amount) * halfTheta) / sinHalfTheta;
-            _ = ratioA;
             var ratioB: f32 = sinf(amount * halfTheta) / sinHalfTheta;
-            _ = ratioB;
             result.x = (q1.x * ratioA) + (q2.x * ratioB);
             result.y = (q1.y * ratioA) + (q2.y * ratioB);
             result.z = (q1.z * ratioA) + (q2.z * ratioB);
@@ -3291,20 +2911,15 @@ pub fn QuaternionSlerp(arg_q1: Quaternion, arg_q2: Quaternion, arg_amount: f32) 
 }
 pub fn QuaternionFromVector3ToVector3(arg_from: Vector3, arg_to: Vector3) callconv(.C) Quaternion {
     var from = arg_from;
-    _ = from;
     var to = arg_to;
-    _ = to;
     var result: Quaternion = Quaternion{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
         .w = 0,
     };
-    _ = result;
     var cos2Theta: f32 = Vector3DotProduct(from, to);
-    _ = cos2Theta;
     var cross: Vector3 = Vector3CrossProduct(from, to);
-    _ = cross;
     result.x = cross.x;
     result.y = cross.y;
     result.z = cross.z;
@@ -3314,31 +2929,26 @@ pub fn QuaternionFromVector3ToVector3(arg_from: Vector3, arg_to: Vector3) callco
 }
 pub fn QuaternionFromMatrix(arg_mat: Matrix) callconv(.C) Quaternion {
     var mat = arg_mat;
-    _ = mat;
     var result: Quaternion = Quaternion{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
         .w = 0,
     };
-    _ = result;
     if ((mat.m0 > mat.m5) and (mat.m0 > mat.m10)) {
         var s: f32 = sqrtf(((1.0 + mat.m0) - mat.m5) - mat.m10) * @intToFloat(f32, @as(c_int, 2));
-        _ = s;
         result.x = 0.25 * s;
         result.y = (mat.m4 + mat.m1) / s;
         result.z = (mat.m2 + mat.m8) / s;
         result.w = (mat.m9 - mat.m6) / s;
     } else if (mat.m5 > mat.m10) {
         var s: f32 = sqrtf(((1.0 + mat.m5) - mat.m0) - mat.m10) * @intToFloat(f32, @as(c_int, 2));
-        _ = s;
         result.x = (mat.m4 + mat.m1) / s;
         result.y = 0.25 * s;
         result.z = (mat.m9 + mat.m6) / s;
         result.w = (mat.m2 - mat.m8) / s;
     } else {
         var s: f32 = sqrtf(((1.0 + mat.m10) - mat.m0) - mat.m5) * @intToFloat(f32, @as(c_int, 2));
-        _ = s;
         result.x = (mat.m2 + mat.m8) / s;
         result.y = (mat.m9 + mat.m6) / s;
         result.z = 0.25 * s;
@@ -3348,27 +2958,16 @@ pub fn QuaternionFromMatrix(arg_mat: Matrix) callconv(.C) Quaternion {
 }
 pub fn QuaternionToMatrix(arg_q: Quaternion) callconv(.C) Matrix {
     var q = arg_q;
-    _ = q;
     var result: Matrix = MatrixIdentity();
-    _ = result;
     var a2: f32 = q.x * q.x;
-    _ = a2;
     var b2: f32 = q.y * q.y;
-    _ = b2;
     var c2: f32 = q.z * q.z;
-    _ = c2;
     var ac: f32 = q.x * q.z;
-    _ = ac;
     var ab: f32 = q.x * q.y;
-    _ = ab;
     var bc: f32 = q.y * q.z;
-    _ = bc;
     var ad: f32 = q.w * q.x;
-    _ = ad;
     var bd: f32 = q.w * q.y;
-    _ = bd;
     var cd: f32 = q.w * q.z;
-    _ = cd;
     result.m0 = @intToFloat(f32, @as(c_int, 1)) - (@intToFloat(f32, @as(c_int, 2)) * (b2 + c2));
     result.m1 = @intToFloat(f32, @as(c_int, 2)) * (ab + cd);
     result.m2 = @intToFloat(f32, @as(c_int, 2)) * (ac - bd);
@@ -3382,24 +2981,19 @@ pub fn QuaternionToMatrix(arg_q: Quaternion) callconv(.C) Matrix {
 }
 pub fn QuaternionFromAxisAngle(arg_axis: Vector3, arg_angle: f32) callconv(.C) Quaternion {
     var axis = arg_axis;
-    _ = axis;
     var angle = arg_angle;
-    _ = angle;
     var result: Quaternion = Quaternion{
         .x = 0.0,
         .y = 0.0,
         .z = 0.0,
         .w = 1.0,
     };
-    _ = result;
     if (Vector3Length(axis) != 0.0) {
         angle *= 0.5;
     }
     axis = Vector3Normalize(axis);
     var sinres: f32 = sinf(angle);
-    _ = sinres;
     var cosres: f32 = cosf(angle);
-    _ = cosres;
     result.x = axis.x * sinres;
     result.y = axis.y * sinres;
     result.z = axis.z * sinres;
@@ -3409,11 +3003,8 @@ pub fn QuaternionFromAxisAngle(arg_axis: Vector3, arg_angle: f32) callconv(.C) Q
 }
 pub fn QuaternionToAxisAngle(arg_q: Quaternion, arg_outAxis: [*c]Vector3, arg_outAngle: [*c]f32) callconv(.C) void {
     var q = arg_q;
-    _ = q;
     var outAxis = arg_outAxis;
-    _ = outAxis;
     var outAngle = arg_outAngle;
-    _ = outAngle;
     if (fabs(@floatCast(f64, q.w)) > @floatCast(f64, 1.0)) {
         q = QuaternionNormalize(q);
     }
@@ -3422,11 +3013,8 @@ pub fn QuaternionToAxisAngle(arg_q: Quaternion, arg_outAxis: [*c]Vector3, arg_ou
         .y = 0.0,
         .z = 0.0,
     };
-    _ = resAxis;
     var resAngle: f32 = 2.0 * acosf(q.w);
-    _ = resAngle;
     var den: f32 = sqrtf(1.0 - (q.w * q.w));
-    _ = den;
     if (den > 0.00009999999747378752) {
         resAxis.x = q.x / den;
         resAxis.y = q.y / den;
@@ -3439,30 +3027,20 @@ pub fn QuaternionToAxisAngle(arg_q: Quaternion, arg_outAxis: [*c]Vector3, arg_ou
 }
 pub fn QuaternionFromEuler(arg_pitch: f32, arg_yaw: f32, arg_roll: f32) callconv(.C) Quaternion {
     var pitch = arg_pitch;
-    _ = pitch;
     var yaw = arg_yaw;
-    _ = yaw;
     var roll = arg_roll;
-    _ = roll;
     var q: Quaternion = Quaternion{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
         .w = 0,
     };
-    _ = q;
     var x0: f32 = cosf(pitch * 0.5);
-    _ = x0;
     var x1: f32 = sinf(pitch * 0.5);
-    _ = x1;
     var y0_1: f32 = cosf(yaw * 0.5);
-    _ = y0_1;
     var y1_2: f32 = sinf(yaw * 0.5);
-    _ = y1_2;
     var z0: f32 = cosf(roll * 0.5);
-    _ = z0;
     var z1: f32 = sinf(roll * 0.5);
-    _ = z1;
     q.x = ((x1 * y0_1) * z0) - ((x0 * y1_2) * z1);
     q.y = ((x0 * y1_2) * z0) + ((x1 * y0_1) * z1);
     q.z = ((x0 * y0_1) * z1) - ((x1 * y1_2) * z0);
@@ -3471,42 +3049,32 @@ pub fn QuaternionFromEuler(arg_pitch: f32, arg_yaw: f32, arg_roll: f32) callconv
 }
 pub fn QuaternionToEuler(arg_q: Quaternion) callconv(.C) Vector3 {
     var q = arg_q;
-    _ = q;
     var result: Vector3 = Vector3{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
     };
-    _ = result;
     var x0: f32 = 2.0 * ((q.w * q.x) + (q.y * q.z));
-    _ = x0;
     var x1: f32 = 1.0 - (2.0 * ((q.x * q.x) + (q.y * q.y)));
-    _ = x1;
     result.x = atan2f(x0, x1) * (180.0 / 3.1415927410125732);
     var y0_1: f32 = 2.0 * ((q.w * q.y) - (q.z * q.x));
-    _ = y0_1;
     y0_1 = if (y0_1 > 1.0) 1.0 else y0_1;
     y0_1 = if (y0_1 < -1.0) -1.0 else y0_1;
     result.y = asinf(y0_1) * (180.0 / 3.1415927410125732);
     var z0: f32 = 2.0 * ((q.w * q.z) + (q.x * q.y));
-    _ = z0;
     var z1: f32 = 1.0 - (2.0 * ((q.y * q.y) + (q.z * q.z)));
-    _ = z1;
     result.z = atan2f(z0, z1) * (180.0 / 3.1415927410125732);
     return result;
 }
 pub fn QuaternionTransform(arg_q: Quaternion, arg_mat: Matrix) callconv(.C) Quaternion {
     var q = arg_q;
-    _ = q;
     var mat = arg_mat;
-    _ = mat;
     var result: Quaternion = Quaternion{
         .x = @intToFloat(f32, @as(c_int, 0)),
         .y = 0,
         .z = 0,
         .w = 0,
     };
-    _ = result;
     result.x = (((mat.m0 * q.x) + (mat.m4 * q.y)) + (mat.m8 * q.z)) + (mat.m12 * q.w);
     result.y = (((mat.m1 * q.x) + (mat.m5 * q.y)) + (mat.m9 * q.z)) + (mat.m13 * q.w);
     result.z = (((mat.m2 * q.x) + (mat.m6 * q.y)) + (mat.m10 * q.z)) + (mat.m14 * q.w);
@@ -3515,19 +3083,14 @@ pub fn QuaternionTransform(arg_q: Quaternion, arg_mat: Matrix) callconv(.C) Quat
 }
 pub fn Vector3Unproject(arg_source: Vector3, arg_projection: Matrix, arg_view: Matrix) callconv(.C) Vector3 {
     var source = arg_source;
-    _ = source;
     var projection = arg_projection;
-    _ = projection;
     var view = arg_view;
-    _ = view;
     var result: Vector3 = Vector3{
         .x = 0.0,
         .y = 0.0,
         .z = 0.0,
     };
-    _ = result;
     var matViewProj: Matrix = MatrixMultiply(view, projection);
-    _ = matViewProj;
     matViewProj = MatrixInvert(matViewProj);
     var quat: Quaternion = Quaternion{
         .x = source.x,
@@ -3535,93 +3098,137 @@ pub fn Vector3Unproject(arg_source: Vector3, arg_projection: Matrix, arg_view: M
         .z = source.z,
         .w = 1.0,
     };
-    _ = quat;
     quat = QuaternionTransform(quat, matViewProj);
     result.x = quat.x / quat.w;
     result.y = quat.y / quat.w;
     result.z = quat.z / quat.w;
     return result;
 }
-pub const va_start = @compileError("TODO implement function '__builtin_va_start' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\include\stdarg.h:17:9
-pub const va_end = @compileError("TODO implement function '__builtin_va_end' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\include\stdarg.h:18:9
-pub const va_arg = @compileError("TODO implement function '__builtin_va_arg' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\include\stdarg.h:19:9
-pub const __va_copy = @compileError("TODO implement function '__builtin_va_copy' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\include\stdarg.h:24:9
-pub const va_copy = @compileError("TODO implement function '__builtin_va_copy' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\include\stdarg.h:27:9
+pub const __INTMAX_C_SUFFIX__ = @compileError("unable to translate macro: undefined identifier `LL`"); // (no file):66:9
+pub const __UINTMAX_C_SUFFIX__ = @compileError("unable to translate macro: undefined identifier `ULL`"); // (no file):72:9
+pub const __INT64_C_SUFFIX__ = @compileError("unable to translate macro: undefined identifier `LL`"); // (no file):164:9
+pub const __UINT32_C_SUFFIX__ = @compileError("unable to translate macro: undefined identifier `U`"); // (no file):186:9
+pub const __UINT64_C_SUFFIX__ = @compileError("unable to translate macro: undefined identifier `ULL`"); // (no file):194:9
+pub const __seg_gs = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):315:9
+pub const __seg_fs = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):316:9
+pub const __declspec = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):372:9
+pub const _cdecl = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):373:9
+pub const __cdecl = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):374:9
+pub const _stdcall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):375:9
+pub const __stdcall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):376:9
+pub const _fastcall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):377:9
+pub const __fastcall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):378:9
+pub const _thiscall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):379:9
+pub const __thiscall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):380:9
+pub const _pascal = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):381:9
+pub const __pascal = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):382:9
+pub const va_start = @compileError("unable to translate macro: undefined identifier `__builtin_va_start`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\include\stdarg.h:17:9
+pub const va_end = @compileError("unable to translate macro: undefined identifier `__builtin_va_end`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\include\stdarg.h:18:9
+pub const va_arg = @compileError("unable to translate macro: undefined identifier `__builtin_va_arg`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\include\stdarg.h:19:9
+pub const __va_copy = @compileError("unable to translate macro: undefined identifier `__builtin_va_copy`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\include\stdarg.h:24:9
+pub const va_copy = @compileError("unable to translate macro: undefined identifier `__builtin_va_copy`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\include\stdarg.h:27:9
+pub const RL_MALLOC = @compileError("unable to translate macro: undefined identifier `malloc`"); // .\src\translate-c/../../3rd/raylib/src/raylib.h:111:13
+pub const RL_CALLOC = @compileError("unable to translate macro: undefined identifier `calloc`"); // .\src\translate-c/../../3rd/raylib/src/raylib.h:114:13
+pub const RL_REALLOC = @compileError("unable to translate macro: undefined identifier `realloc`"); // .\src\translate-c/../../3rd/raylib/src/raylib.h:117:13
+pub const RL_FREE = @compileError("unable to translate macro: undefined identifier `free`"); // .\src\translate-c/../../3rd/raylib/src/raylib.h:120:13
 pub const RMDEF = @compileError("unable to translate C expr: unexpected token .Keyword_inline"); // .\src\translate-c/../../3rd/raylib/src/raymath.h:70:17
-pub const __STRINGIFY = @compileError("unable to translate C expr: unexpected token .Hash"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_mac.h:10:9
-pub const __MINGW64_VERSION_STR = @compileError("unable to translate C expr: unexpected token .StringLiteral"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_mac.h:26:9
-pub const __MINGW_IMP_SYMBOL = @compileError("unable to translate C expr: unexpected token .HashHash"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_mac.h:119:11
-pub const __MINGW_IMP_LSYMBOL = @compileError("unable to translate C expr: unexpected token .HashHash"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_mac.h:120:11
-pub const __MINGW_LSYMBOL = @compileError("unable to translate C expr: unexpected token .HashHash"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_mac.h:122:11
-pub const __MINGW_POISON_NAME = @compileError("unable to translate C expr: unexpected token .HashHash"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_mac.h:203:11
-pub const __MSABI_LONG = @compileError("unable to translate C expr: unexpected token .HashHash"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_mac.h:209:13
-pub const __MINGW_ATTRIB_DEPRECATED_STR = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_mac.h:247:11
-pub const __mingw_ovr = @compileError("unable to translate C expr: unexpected token .Keyword_static"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_mac.h:289:11
-pub const __MINGW_CRT_NAME_CONCAT2 = @compileError("unable to translate C expr: unexpected token .Colon"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_secapi.h:41:9
-pub const __CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_MEMORY_0_3_ = @compileError("unable to translate C expr: unexpected token .Identifier"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any/_mingw_secapi.h:69:9
-pub const __MINGW_IMPORT = @compileError("unable to translate C expr: unexpected token .Keyword_extern"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:51:12
-pub const __CRT_INLINE = @compileError("unable to translate C expr: unexpected token .Keyword_extern"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:90:11
-pub const __MINGW_INTRIN_INLINE = @compileError("unable to translate C expr: unexpected token .Keyword_extern"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:97:9
-pub const __MINGW_PRAGMA_PARAM = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:215:9
-pub const __MINGW_BROKEN_INTERFACE = @compileError("unable to translate C expr: expected ',' or ')'"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:218:9
-pub const __forceinline = @compileError("unable to translate C expr: unexpected token .Keyword_extern"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:267:9
-pub const _crt_va_start = @compileError("TODO implement function '__builtin_va_start' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\vadefs.h:48:9
-pub const _crt_va_arg = @compileError("TODO implement function '__builtin_va_arg' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\vadefs.h:49:9
-pub const _crt_va_end = @compileError("TODO implement function '__builtin_va_end' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\vadefs.h:50:9
-pub const _crt_va_copy = @compileError("TODO implement function '__builtin_va_copy' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\vadefs.h:51:9
-pub const __CRT_STRINGIZE = @compileError("unable to translate C expr: unexpected token .Hash"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:286:9
-pub const __CRT_WIDE = @compileError("unable to translate C expr: unexpected token .HashHash"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:291:9
-pub const _CRT_INSECURE_DEPRECATE_MEMORY = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:353:9
-pub const _CRT_INSECURE_DEPRECATE_GLOBALS = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:357:9
-pub const _CRT_OBSOLETE = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:365:9
-pub const _UNION_NAME = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:476:9
-pub const _STRUCT_NAME = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:477:9
-pub const __CRT_UUID_DECL = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\_mingw.h:564:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_0 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:267:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_1 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:268:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_2 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:269:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_3 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:270:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_4 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:271:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_1_1 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:272:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_1_2 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:273:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_1_3 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:274:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_2_0 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:275:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_1_ARGLIST = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:276:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_2_ARGLIST = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:277:9
-pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_SPLITPATH = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:278:9
-pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_0 = @compileError("unable to translate C expr: expected ',' or ')'"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:282:9
-pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1 = @compileError("unable to translate C expr: expected ',' or ')'"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:284:9
-pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_2 = @compileError("unable to translate C expr: expected ',' or ')'"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:286:9
-pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_3 = @compileError("unable to translate C expr: expected ',' or ')'"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:288:9
-pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_4 = @compileError("unable to translate C expr: expected ',' or ')'"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:290:9
-pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_0_EX = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:427:9
-pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:428:9
-pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_2_EX = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:429:9
-pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_3_EX = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:430:9
-pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_4_EX = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:431:9
-pub const __crt_typefix = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\corecrt.h:491:9
-pub const __mingw_types_compatible_p = @compileError("TODO implement function '__builtin_types_compatible_p' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:97:9
-pub const __mingw_choose_expr = @compileError("TODO implement function '__builtin_choose_expr' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:105:9
-pub const HUGE_VAL = @compileError("TODO implement function '__builtin_huge_val' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:156:9
-pub const HUGE_VALF = @compileError("TODO implement function '__builtin_huge_valf' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:349:9
-pub const HUGE_VALL = @compileError("TODO implement function '__builtin_huge_vall' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:350:9
-pub const INFINITY = @compileError("TODO implement function '__builtin_inff' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:351:9
-pub const NAN = @compileError("TODO implement function '__builtin_nanf' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:352:9
-pub const fpclassify = @compileError("unable to translate: TODO long double"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:492:9
-pub const isnan = @compileError("unable to translate: TODO long double"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:586:9
-pub const signbit = @compileError("unable to translate: TODO long double"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:646:9
-pub const isgreater = @compileError("TODO implement function '__builtin_isgreater' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:1144:9
-pub const isgreaterequal = @compileError("TODO implement function '__builtin_isgreaterequal' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:1145:9
-pub const isless = @compileError("TODO implement function '__builtin_isless' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:1146:9
-pub const islessequal = @compileError("TODO implement function '__builtin_islessequal' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:1147:9
-pub const islessgreater = @compileError("TODO implement function '__builtin_islessgreater' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:1148:9
-pub const isunordered = @compileError("TODO implement function '__builtin_isunordered' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\libc\include\any-windows-any\math.h:1149:9
+pub const __STRINGIFY = @compileError("unable to translate C expr: unexpected token .Hash"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:10:9
+pub const __MINGW64_VERSION_STR = @compileError("unable to translate C expr: unexpected token .StringLiteral"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:26:9
+pub const __MINGW_IMP_SYMBOL = @compileError("unable to translate macro: undefined identifier `__imp_`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:119:11
+pub const __MINGW_IMP_LSYMBOL = @compileError("unable to translate macro: undefined identifier `__imp_`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:120:11
+pub const __MINGW_LSYMBOL = @compileError("unable to translate C expr: unexpected token .HashHash"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:122:11
+pub const __MINGW_ASM_CALL = @compileError("unable to translate macro: undefined identifier `__asm__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:130:9
+pub const __MINGW_ASM_CRT_CALL = @compileError("unable to translate macro: undefined identifier `__asm__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:131:9
+pub const __MINGW_EXTENSION = @compileError("unable to translate macro: undefined identifier `__extension__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:163:13
+pub const __MINGW_POISON_NAME = @compileError("unable to translate macro: undefined identifier `_layout_has_not_been_verified_and_its_declaration_is_most_likely_incorrect`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:203:11
+pub const __MSABI_LONG = @compileError("unable to translate macro: undefined identifier `l`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:209:13
+pub const __MINGW_ATTRIB_DEPRECATED_STR = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:247:11
+pub const __MINGW_MS_PRINTF = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:270:9
+pub const __MINGW_MS_SCANF = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:273:9
+pub const __MINGW_GNU_PRINTF = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:276:9
+pub const __MINGW_GNU_SCANF = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:279:9
+pub const __mingw_ovr = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_mac.h:289:11
+pub const __MINGW_CRT_NAME_CONCAT2 = @compileError("unable to translate macro: undefined identifier `_s`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_secapi.h:41:9
+pub const __CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_MEMORY_0_3_ = @compileError("unable to translate C expr: unexpected token .Identifier"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any/_mingw_secapi.h:69:9
+pub const __MINGW_IMPORT = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:51:12
+pub const _CRTIMP = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:59:15
+pub const _inline = @compileError("unable to translate macro: undefined identifier `__inline`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:81:9
+pub const __CRT_INLINE = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:90:11
+pub const __MINGW_INTRIN_INLINE = @compileError("unable to translate macro: undefined identifier `__inline__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:97:9
+pub const __UNUSED_PARAM = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:111:11
+pub const __restrict_arr = @compileError("unable to translate macro: undefined identifier `__restrict`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:126:10
+pub const __MINGW_ATTRIB_NORETURN = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:142:9
+pub const __MINGW_ATTRIB_CONST = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:143:9
+pub const __MINGW_ATTRIB_MALLOC = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:153:9
+pub const __MINGW_ATTRIB_PURE = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:154:9
+pub const __MINGW_ATTRIB_NONNULL = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:167:9
+pub const __MINGW_ATTRIB_UNUSED = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:173:9
+pub const __MINGW_ATTRIB_USED = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:179:9
+pub const __MINGW_ATTRIB_DEPRECATED = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:180:9
+pub const __MINGW_ATTRIB_DEPRECATED_MSG = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:182:9
+pub const __MINGW_NOTHROW = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:197:9
+pub const __MINGW_PRAGMA_PARAM = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:215:9
+pub const __MINGW_BROKEN_INTERFACE = @compileError("unable to translate macro: undefined identifier `message`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:218:9
+pub const __forceinline = @compileError("unable to translate macro: undefined identifier `__inline__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:267:9
+pub const _crt_va_start = @compileError("unable to translate macro: undefined identifier `__builtin_va_start`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\vadefs.h:48:9
+pub const _crt_va_arg = @compileError("unable to translate macro: undefined identifier `__builtin_va_arg`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\vadefs.h:49:9
+pub const _crt_va_end = @compileError("unable to translate macro: undefined identifier `__builtin_va_end`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\vadefs.h:50:9
+pub const _crt_va_copy = @compileError("unable to translate macro: undefined identifier `__builtin_va_copy`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\vadefs.h:51:9
+pub const __CRT_STRINGIZE = @compileError("unable to translate C expr: unexpected token .Hash"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:286:9
+pub const __CRT_WIDE = @compileError("unable to translate macro: undefined identifier `L`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:291:9
+pub const _CRT_DEPRECATE_TEXT = @compileError("unable to translate macro: undefined identifier `deprecated`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:350:9
+pub const _CRT_INSECURE_DEPRECATE_MEMORY = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:353:9
+pub const _CRT_INSECURE_DEPRECATE_GLOBALS = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:357:9
+pub const _CRT_OBSOLETE = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:365:9
+pub const _CRT_ALIGN = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:392:9
+pub const _CRT_glob = @compileError("unable to translate macro: undefined identifier `_dowildcard`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:456:9
+pub const _UNION_NAME = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:476:9
+pub const _STRUCT_NAME = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:477:9
+pub const __CRT_UUID_DECL = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:564:9
+pub const __MINGW_DEBUGBREAK_IMPL = @compileError("unable to translate macro: undefined identifier `__has_builtin`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\_mingw.h:575:9
+pub const _CRT_SECURE_CPP_NOTHROW = @compileError("unable to translate macro: undefined identifier `throw`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:148:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_0 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:267:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_1 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:268:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_2 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:269:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_3 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:270:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_4 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:271:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_1_1 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:272:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_1_2 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:273:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_1_3 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:274:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_2_0 = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:275:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_1_ARGLIST = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:276:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_2_ARGLIST = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:277:9
+pub const __DEFINE_CPP_OVERLOAD_SECURE_FUNC_SPLITPATH = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:278:9
+pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_0 = @compileError("unable to translate macro: undefined identifier `__func_name`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:282:9
+pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1 = @compileError("unable to translate macro: undefined identifier `__func_name`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:284:9
+pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_2 = @compileError("unable to translate macro: undefined identifier `__func_name`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:286:9
+pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_3 = @compileError("unable to translate macro: undefined identifier `__func_name`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:288:9
+pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_4 = @compileError("unable to translate macro: undefined identifier `__func_name`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:290:9
+pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_0_EX = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:427:9
+pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:428:9
+pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_2_EX = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:429:9
+pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_3_EX = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:430:9
+pub const __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_4_EX = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:431:9
+pub const __crt_typefix = @compileError("unable to translate C expr: unexpected token .Eof"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\corecrt.h:491:9
+pub const __mingw_types_compatible_p = @compileError("unable to translate macro: undefined identifier `__builtin_types_compatible_p`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:97:9
+pub const __mingw_choose_expr = @compileError("unable to translate macro: undefined identifier `__builtin_choose_expr`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:105:9
+pub const HUGE_VAL = @compileError("unable to translate macro: undefined identifier `__builtin_huge_val`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:156:9
+pub const HUGE_VALL = @compileError("unable to translate macro: undefined identifier `__builtin_huge_vall`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:350:9
+pub const fpclassify = @compileError("unable to translate macro: undefined identifier `__typeof__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:492:9
+pub const isnan = @compileError("unable to translate macro: undefined identifier `__typeof__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:586:9
+pub const signbit = @compileError("unable to translate macro: undefined identifier `__typeof__`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:646:9
+pub const isgreater = @compileError("unable to translate macro: undefined identifier `__builtin_isgreater`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:1144:9
+pub const isgreaterequal = @compileError("unable to translate macro: undefined identifier `__builtin_isgreaterequal`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:1145:9
+pub const isless = @compileError("unable to translate macro: undefined identifier `__builtin_isless`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:1146:9
+pub const islessequal = @compileError("unable to translate macro: undefined identifier `__builtin_islessequal`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:1147:9
+pub const islessgreater = @compileError("unable to translate macro: undefined identifier `__builtin_islessgreater`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:1148:9
+pub const isunordered = @compileError("unable to translate macro: undefined identifier `__builtin_isunordered`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\libc\include\any-windows-any\math.h:1149:9
 pub const __llvm__ = @as(c_int, 1);
 pub const __clang__ = @as(c_int, 1);
-pub const __clang_major__ = @as(c_int, 12);
+pub const __clang_major__ = @as(c_int, 13);
 pub const __clang_minor__ = @as(c_int, 0);
-pub const __clang_patchlevel__ = @as(c_int, 1);
-pub const __clang_version__ = "12.0.1 (https://github.com/llvm/llvm-project 328a6ec955327c6d56b6bc3478c723dd3cd468ef)";
+pub const __clang_patchlevel__ = @as(c_int, 0);
+pub const __clang_version__ = "13.0.0 (https://github.com/llvm/llvm-project d7b669b3a30345cfcdb2fde2af6f48aa4b94845d)";
 pub const __GNUC__ = @as(c_int, 4);
 pub const __GNUC_MINOR__ = @as(c_int, 2);
 pub const __GNUC_PATCHLEVEL__ = @as(c_int, 1);
@@ -3638,10 +3245,12 @@ pub const __OPENCL_MEMORY_SCOPE_DEVICE = @as(c_int, 2);
 pub const __OPENCL_MEMORY_SCOPE_ALL_SVM_DEVICES = @as(c_int, 3);
 pub const __OPENCL_MEMORY_SCOPE_SUB_GROUP = @as(c_int, 4);
 pub const __PRAGMA_REDEFINE_EXTNAME = @as(c_int, 1);
-pub const __VERSION__ = "Clang 12.0.1 (https://github.com/llvm/llvm-project 328a6ec955327c6d56b6bc3478c723dd3cd468ef)";
+pub const __VERSION__ = "Clang 13.0.0 (https://github.com/llvm/llvm-project d7b669b3a30345cfcdb2fde2af6f48aa4b94845d)";
 pub const __OBJC_BOOL_IS_BOOL = @as(c_int, 0);
 pub const __CONSTANT_CFSTRINGS__ = @as(c_int, 1);
 pub const __SEH__ = @as(c_int, 1);
+pub const __clang_literal_encoding__ = "UTF-8";
+pub const __clang_wide_literal_encoding__ = "UTF-16";
 pub const __OPTIMIZE__ = @as(c_int, 1);
 pub const __ORDER_LITTLE_ENDIAN__ = @as(c_int, 1234);
 pub const __ORDER_BIG_ENDIAN__ = @as(c_int, 4321);
@@ -3678,13 +3287,11 @@ pub const __SIZEOF_INT128__ = @as(c_int, 16);
 pub const __INTMAX_TYPE__ = c_longlong;
 pub const __INTMAX_FMTd__ = "lld";
 pub const __INTMAX_FMTi__ = "lli";
-pub const __INTMAX_C_SUFFIX__ = LL;
 pub const __UINTMAX_TYPE__ = c_ulonglong;
 pub const __UINTMAX_FMTo__ = "llo";
 pub const __UINTMAX_FMTu__ = "llu";
 pub const __UINTMAX_FMTx__ = "llx";
 pub const __UINTMAX_FMTX__ = "llX";
-pub const __UINTMAX_C_SUFFIX__ = ULL;
 pub const __INTMAX_WIDTH__ = @as(c_int, 64);
 pub const __PTRDIFF_TYPE__ = c_longlong;
 pub const __PTRDIFF_FMTd__ = "lld";
@@ -3764,21 +3371,24 @@ pub const __WINT_UNSIGNED__ = @as(c_int, 1);
 pub const __INT8_TYPE__ = i8;
 pub const __INT8_FMTd__ = "hhd";
 pub const __INT8_FMTi__ = "hhi";
+pub const __INT8_C_SUFFIX__ = "";
 pub const __INT16_TYPE__ = c_short;
 pub const __INT16_FMTd__ = "hd";
 pub const __INT16_FMTi__ = "hi";
+pub const __INT16_C_SUFFIX__ = "";
 pub const __INT32_TYPE__ = c_int;
 pub const __INT32_FMTd__ = "d";
 pub const __INT32_FMTi__ = "i";
+pub const __INT32_C_SUFFIX__ = "";
 pub const __INT64_TYPE__ = c_longlong;
 pub const __INT64_FMTd__ = "lld";
 pub const __INT64_FMTi__ = "lli";
-pub const __INT64_C_SUFFIX__ = LL;
 pub const __UINT8_TYPE__ = u8;
 pub const __UINT8_FMTo__ = "hho";
 pub const __UINT8_FMTu__ = "hhu";
 pub const __UINT8_FMTx__ = "hhx";
 pub const __UINT8_FMTX__ = "hhX";
+pub const __UINT8_C_SUFFIX__ = "";
 pub const __UINT8_MAX__ = @as(c_int, 255);
 pub const __INT8_MAX__ = @as(c_int, 127);
 pub const __UINT16_TYPE__ = c_ushort;
@@ -3786,6 +3396,7 @@ pub const __UINT16_FMTo__ = "ho";
 pub const __UINT16_FMTu__ = "hu";
 pub const __UINT16_FMTx__ = "hx";
 pub const __UINT16_FMTX__ = "hX";
+pub const __UINT16_C_SUFFIX__ = "";
 pub const __UINT16_MAX__ = @import("std").zig.c_translation.promoteIntLiteral(c_int, 65535, .decimal);
 pub const __INT16_MAX__ = @as(c_int, 32767);
 pub const __UINT32_TYPE__ = c_uint;
@@ -3793,7 +3404,6 @@ pub const __UINT32_FMTo__ = "o";
 pub const __UINT32_FMTu__ = "u";
 pub const __UINT32_FMTx__ = "x";
 pub const __UINT32_FMTX__ = "X";
-pub const __UINT32_C_SUFFIX__ = U;
 pub const __UINT32_MAX__ = @import("std").zig.c_translation.promoteIntLiteral(c_uint, 4294967295, .decimal);
 pub const __INT32_MAX__ = @import("std").zig.c_translation.promoteIntLiteral(c_int, 2147483647, .decimal);
 pub const __UINT64_TYPE__ = c_ulonglong;
@@ -3801,7 +3411,6 @@ pub const __UINT64_FMTo__ = "llo";
 pub const __UINT64_FMTu__ = "llu";
 pub const __UINT64_FMTx__ = "llx";
 pub const __UINT64_FMTX__ = "llX";
-pub const __UINT64_C_SUFFIX__ = ULL;
 pub const __UINT64_MAX__ = @as(c_ulonglong, 18446744073709551615);
 pub const __INT64_MAX__ = @as(c_longlong, 9223372036854775807);
 pub const __INT_LEAST8_TYPE__ = i8;
@@ -3884,6 +3493,7 @@ pub const __UINT_FAST64_FMTo__ = "llo";
 pub const __UINT_FAST64_FMTu__ = "llu";
 pub const __UINT_FAST64_FMTx__ = "llx";
 pub const __UINT_FAST64_FMTX__ = "llX";
+pub const __USER_LABEL_PREFIX__ = "";
 pub const __FINITE_MATH_ONLY__ = @as(c_int, 0);
 pub const __GNUC_STDC_INLINE__ = @as(c_int, 1);
 pub const __GCC_ATOMIC_TEST_AND_SET_TRUEVAL = @as(c_int, 1);
@@ -3921,11 +3531,10 @@ pub const __x86_64 = @as(c_int, 1);
 pub const __x86_64__ = @as(c_int, 1);
 pub const __SEG_GS = @as(c_int, 1);
 pub const __SEG_FS = @as(c_int, 1);
-pub const __seg_gs = __attribute__(address_space(@as(c_int, 256)));
-pub const __seg_fs = __attribute__(address_space(@as(c_int, 257)));
 pub const __corei7 = @as(c_int, 1);
 pub const __corei7__ = @as(c_int, 1);
 pub const __tune_corei7__ = @as(c_int, 1);
+pub const __REGISTER_PREFIX__ = "";
 pub const __NO_MATH_INLINES = @as(c_int, 1);
 pub const __AES__ = @as(c_int, 1);
 pub const __PCLMUL__ = @as(c_int, 1);
@@ -3977,52 +3586,23 @@ pub const __WIN64__ = @as(c_int, 1);
 pub const __MINGW64__ = @as(c_int, 1);
 pub const __MSVCRT__ = @as(c_int, 1);
 pub const __MINGW32__ = @as(c_int, 1);
-pub inline fn __declspec(a: anytype) @TypeOf(__attribute__(a)) {
-    _ = a;
-    return __attribute__(a);
-}
-pub const _cdecl = __attribute__(__cdecl__);
-pub const __cdecl = __attribute__(__cdecl__);
-pub const _stdcall = __attribute__(__stdcall__);
-pub const __stdcall = __attribute__(__stdcall__);
-pub const _fastcall = __attribute__(__fastcall__);
-pub const __fastcall = __attribute__(__fastcall__);
-pub const _thiscall = __attribute__(__thiscall__);
-pub const __thiscall = __attribute__(__thiscall__);
-pub const _pascal = __attribute__(__pascal__);
-pub const __pascal = __attribute__(__pascal__);
 pub const __STDC__ = @as(c_int, 1);
 pub const __STDC_HOSTED__ = @as(c_int, 1);
 pub const __STDC_VERSION__ = @as(c_long, 201710);
 pub const __STDC_UTF_16__ = @as(c_int, 1);
 pub const __STDC_UTF_32__ = @as(c_int, 1);
 pub const _DEBUG = @as(c_int, 1);
+pub const RAYLIB_H = "";
+pub const __STDARG_H = "";
+pub const _VA_LIST = "";
 pub const __GNUC_VA_LIST = @as(c_int, 1);
 pub const RAYLIB_VERSION = "3.8-dev";
+pub const RLAPI = "";
 pub const PI = @as(f32, 3.14159265358979323846);
 pub const DEG2RAD = PI / @as(f32, 180.0);
 pub const RAD2DEG = @as(f32, 180.0) / PI;
-pub inline fn RL_MALLOC(sz: anytype) @TypeOf(malloc(sz)) {
-    _ = sz;
-    return malloc(sz);
-}
-pub inline fn RL_CALLOC(n: anytype, sz: anytype) @TypeOf(calloc(n, sz)) {
-    _ = n;
-    _ = sz;
-    return calloc(n, sz);
-}
-pub inline fn RL_REALLOC(ptr: anytype, sz: anytype) @TypeOf(realloc(ptr, sz)) {
-    _ = ptr;
-    _ = sz;
-    return realloc(ptr, sz);
-}
-pub inline fn RL_FREE(ptr: anytype) @TypeOf(free(ptr)) {
-    _ = ptr;
-    return free(ptr);
-}
-pub inline fn CLITERAL(type_1: anytype) @TypeOf(type_1) {
-    _ = type_1;
-    return type_1;
+pub inline fn CLITERAL(@"type": anytype) @TypeOf(@"type") {
+    return @"type";
 }
 pub const LIGHTGRAY = @import("std").mem.zeroInit(CLITERAL(Color), .{ @as(c_int, 200), @as(c_int, 200), @as(c_int, 200), @as(c_int, 255) });
 pub const GRAY = @import("std").mem.zeroInit(CLITERAL(Color), .{ @as(c_int, 130), @as(c_int, 130), @as(c_int, 130), @as(c_int, 255) });
@@ -4055,9 +3635,10 @@ pub const FILTER_POINT = TEXTURE_FILTER_POINT;
 pub const FILTER_BILINEAR = TEXTURE_FILTER_BILINEAR;
 pub const MAP_DIFFUSE = MATERIAL_MAP_DIFFUSE;
 pub const UNCOMPRESSED_R8G8B8A8 = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8;
-pub const bool_4 = bool;
-pub const true_5 = @as(c_int, 1);
-pub const false_6 = @as(c_int, 0);
+pub const __STDBOOL_H = "";
+pub const @"bool" = bool;
+pub const @"true" = @as(c_int, 1);
+pub const @"false" = @as(c_int, 0);
 pub const __bool_true_false_are_defined = @as(c_int, 1);
 pub const MOUSE_LEFT_BUTTON = MOUSE_BUTTON_LEFT;
 pub const MOUSE_RIGHT_BUTTON = MOUSE_BUTTON_RIGHT;
@@ -4066,16 +3647,19 @@ pub const MATERIAL_MAP_DIFFUSE = MATERIAL_MAP_ALBEDO;
 pub const MATERIAL_MAP_SPECULAR = MATERIAL_MAP_METALNESS;
 pub const SHADER_LOC_MAP_DIFFUSE = SHADER_LOC_MAP_ALBEDO;
 pub const SHADER_LOC_MAP_SPECULAR = SHADER_LOC_MAP_METALNESS;
+pub const RAYMATH_H = "";
 pub inline fn MatrixToFloat(mat: anytype) @TypeOf(MatrixToFloatV(mat).v) {
-    _ = mat;
     return MatrixToFloatV(mat).v;
 }
 pub inline fn Vector3ToFloat(vec: anytype) @TypeOf(Vector3ToFloatV(vec).v) {
-    _ = vec;
     return Vector3ToFloatV(vec).v;
 }
+pub const _MATH_H_ = "";
+pub const _INC_CRTDEFS = "";
+pub const _INC_CORECRT = "";
+pub const _INC__MINGW_H = "";
+pub const _INC_CRTDEFS_MACRO = "";
 pub inline fn __MINGW64_STRINGIFY(x: anytype) @TypeOf(__STRINGIFY(x)) {
-    _ = x;
     return __STRINGIFY(x);
 }
 pub const __MINGW64_VERSION_MAJOR = @as(c_int, 9);
@@ -4087,22 +3671,27 @@ pub const __MINGW32_MAJOR_VERSION = @as(c_int, 3);
 pub const __MINGW32_MINOR_VERSION = @as(c_int, 11);
 pub const _M_AMD64 = @as(c_int, 100);
 pub const _M_X64 = @as(c_int, 100);
-pub const _ = @as(c_int, 1);
+pub const @"_" = @as(c_int, 1);
 pub const __MINGW_USE_UNDERSCORE_PREFIX = @as(c_int, 0);
 pub inline fn __MINGW_USYMBOL(sym: anytype) @TypeOf(sym) {
-    _ = sym;
     return sym;
 }
-pub inline fn __MINGW_ASM_CALL(func: anytype) @TypeOf(__asm__(__MINGW64_STRINGIFY(__MINGW_USYMBOL(func)))) {
-    _ = func;
-    return __asm__(__MINGW64_STRINGIFY(__MINGW_USYMBOL(func)));
-}
-pub inline fn __MINGW_ASM_CRT_CALL(func: anytype) @TypeOf(__asm__(__STRINGIFY(func))) {
-    _ = func;
-    return __asm__(__STRINGIFY(func));
-}
-pub const __MINGW_EXTENSION = __extension__;
 pub const __C89_NAMELESS = __MINGW_EXTENSION;
+pub const __C89_NAMELESSSTRUCTNAME = "";
+pub const __C89_NAMELESSSTRUCTNAME1 = "";
+pub const __C89_NAMELESSSTRUCTNAME2 = "";
+pub const __C89_NAMELESSSTRUCTNAME3 = "";
+pub const __C89_NAMELESSSTRUCTNAME4 = "";
+pub const __C89_NAMELESSSTRUCTNAME5 = "";
+pub const __C89_NAMELESSUNIONNAME = "";
+pub const __C89_NAMELESSUNIONNAME1 = "";
+pub const __C89_NAMELESSUNIONNAME2 = "";
+pub const __C89_NAMELESSUNIONNAME3 = "";
+pub const __C89_NAMELESSUNIONNAME4 = "";
+pub const __C89_NAMELESSUNIONNAME5 = "";
+pub const __C89_NAMELESSUNIONNAME6 = "";
+pub const __C89_NAMELESSUNIONNAME7 = "";
+pub const __C89_NAMELESSUNIONNAME8 = "";
 pub const __GNU_EXTENSION = __MINGW_EXTENSION;
 pub const __MINGW_HAVE_ANSI_C99_PRINTF = @as(c_int, 1);
 pub const __MINGW_HAVE_WIDE_C99_PRINTF = @as(c_int, 1);
@@ -4110,8 +3699,6 @@ pub const __MINGW_HAVE_ANSI_C99_SCANF = @as(c_int, 1);
 pub const __MINGW_HAVE_WIDE_C99_SCANF = @as(c_int, 1);
 pub const __MINGW_GCC_VERSION = ((__GNUC__ * @as(c_int, 10000)) + (__GNUC_MINOR__ * @as(c_int, 100))) + __GNUC_PATCHLEVEL__;
 pub inline fn __MINGW_GNUC_PREREQ(major: anytype, minor: anytype) @TypeOf((__GNUC__ > major) or ((__GNUC__ == major) and (__GNUC_MINOR__ >= minor))) {
-    _ = major;
-    _ = minor;
     return (__GNUC__ > major) or ((__GNUC__ == major) and (__GNUC_MINOR__ >= minor));
 }
 pub inline fn __MINGW_MSC_PREREQ(major: anytype, minor: anytype) @TypeOf(@as(c_int, 0)) {
@@ -4123,30 +3710,12 @@ pub const __MINGW_SEC_WARN_STR = "This function or variable may be unsafe, use _
 pub const __MINGW_MSVC2005_DEPREC_STR = "This POSIX function is deprecated beginning in Visual C++ 2005, use _CRT_NONSTDC_NO_DEPRECATE to disable deprecation";
 pub const __MINGW_ATTRIB_DEPRECATED_MSVC2005 = __MINGW_ATTRIB_DEPRECATED_STR(__MINGW_MSVC2005_DEPREC_STR);
 pub const __MINGW_ATTRIB_DEPRECATED_SEC_WARN = __MINGW_ATTRIB_DEPRECATED_STR(__MINGW_SEC_WARN_STR);
-pub inline fn __MINGW_MS_PRINTF(__format: anytype, __args: anytype) @TypeOf(__attribute__(__format__(ms_printf, __format, __args))) {
-    _ = __format;
-    _ = __args;
-    return __attribute__(__format__(ms_printf, __format, __args));
-}
-pub inline fn __MINGW_MS_SCANF(__format: anytype, __args: anytype) @TypeOf(__attribute__(__format__(ms_scanf, __format, __args))) {
-    _ = __format;
-    _ = __args;
-    return __attribute__(__format__(ms_scanf, __format, __args));
-}
-pub inline fn __MINGW_GNU_PRINTF(__format: anytype, __args: anytype) @TypeOf(__attribute__(__format__(gnu_printf, __format, __args))) {
-    _ = __format;
-    _ = __args;
-    return __attribute__(__format__(gnu_printf, __format, __args));
-}
-pub inline fn __MINGW_GNU_SCANF(__format: anytype, __args: anytype) @TypeOf(__attribute__(__format__(gnu_scanf, __format, __args))) {
-    _ = __format;
-    _ = __args;
-    return __attribute__(__format__(gnu_scanf, __format, __args));
-}
 pub const __mingw_static_ovr = __mingw_ovr;
+pub const __mingw_attribute_artificial = "";
 pub const __MINGW_FORTIFY_LEVEL = @as(c_int, 0);
 pub const __mingw_bos_ovr = __mingw_ovr;
 pub const __MINGW_FORTIFY_VA_ARG = @as(c_int, 0);
+pub const _INC_MINGW_SECAPI = "";
 pub const _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES = @as(c_int, 0);
 pub const _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES_MEMORY = @as(c_int, 0);
 pub const _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES = @as(c_int, 0);
@@ -4154,82 +3723,102 @@ pub const _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_COUNT = @as(c_int, 0);
 pub const _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_MEMORY = @as(c_int, 0);
 pub const __LONG32 = c_long;
 pub const __USE_CRTIMP = @as(c_int, 1);
-pub const _CRTIMP = __attribute__(__dllimport__);
+pub const __DECLSPEC_SUPPORTED = "";
 pub const USE___UUIDOF = @as(c_int, 0);
-pub const _inline = __inline;
-pub inline fn __UNUSED_PARAM(x: anytype) @TypeOf(x ++ __attribute__(__unused__)) {
-    _ = x;
-    return x ++ __attribute__(__unused__);
-}
-pub const __restrict_arr = __restrict;
-pub const __MINGW_ATTRIB_NORETURN = __attribute__(__noreturn__);
-pub const __MINGW_ATTRIB_CONST = __attribute__(__const__);
-pub const __MINGW_ATTRIB_MALLOC = __attribute__(__malloc__);
-pub const __MINGW_ATTRIB_PURE = __attribute__(__pure__);
-pub inline fn __MINGW_ATTRIB_NONNULL(arg: anytype) @TypeOf(__attribute__(__nonnull__(arg))) {
-    _ = arg;
-    return __attribute__(__nonnull__(arg));
-}
-pub const __MINGW_ATTRIB_UNUSED = __attribute__(__unused__);
-pub const __MINGW_ATTRIB_USED = __attribute__(__used__);
-pub const __MINGW_ATTRIB_DEPRECATED = __attribute__(__deprecated__);
-pub inline fn __MINGW_ATTRIB_DEPRECATED_MSG(x: anytype) @TypeOf(__attribute__(__deprecated__(x))) {
-    _ = x;
-    return __attribute__(__deprecated__(x));
-}
-pub const __MINGW_NOTHROW = __attribute__(__nothrow__);
+pub const __MINGW_ATTRIB_NO_OPTIMIZE = "";
 pub const __MSVCRT_VERSION__ = @as(c_int, 0x700);
 pub const _WIN32_WINNT = @as(c_int, 0x0603);
+pub const _INT128_DEFINED = "";
 pub const __int8 = u8;
 pub const __int16 = c_short;
 pub const __int32 = c_int;
 pub const __int64 = c_longlong;
+pub const __ptr32 = "";
+pub const __ptr64 = "";
+pub const __unaligned = "";
+pub const __w64 = "";
+pub const __nothrow = "";
+pub const _INC_VADEFS = "";
+pub const MINGW_SDK_INIT = "";
 pub const MINGW_HAS_SECURE_API = @as(c_int, 1);
 pub const __STDC_SECURE_LIB__ = @as(c_long, 200411);
 pub const __GOT_SECURE_LIB__ = __STDC_SECURE_LIB__;
+pub const MINGW_DDK_H = "";
 pub const MINGW_HAS_DDK_H = @as(c_int, 1);
 pub const _CRT_PACKING = @as(c_int, 8);
+pub const _VA_LIST_DEFINED = "";
 pub inline fn _ADDRESSOF(v: anytype) @TypeOf(&v) {
-    _ = v;
     return &v;
 }
 pub inline fn _CRT_STRINGIZE(_Value: anytype) @TypeOf(__CRT_STRINGIZE(_Value)) {
-    _ = _Value;
     return __CRT_STRINGIZE(_Value);
 }
 pub inline fn _CRT_WIDE(_String: anytype) @TypeOf(__CRT_WIDE(_String)) {
-    _ = _String;
     return __CRT_WIDE(_String);
 }
+pub const _W64 = "";
 pub const _CRTIMP_NOIA64 = _CRTIMP;
 pub const _CRTIMP2 = _CRTIMP;
 pub const _CRTIMP_ALTERNATIVE = _CRTIMP;
+pub const _CRT_ALTERNATIVE_IMPORTED = "";
 pub const _MRTIMP2 = _CRTIMP;
+pub const _DLL = "";
+pub const _MT = "";
 pub const _MCRTIMP = _CRTIMP;
 pub const _CRTIMP_PURE = _CRTIMP;
+pub const _PGLOBAL = "";
+pub const _AGLOBAL = "";
 pub const _SECURECRT_FILL_BUFFER_PATTERN = @as(c_int, 0xFD);
-pub inline fn _CRT_DEPRECATE_TEXT(_Text: anytype) @TypeOf(__declspec(deprecated)) {
-    _ = _Text;
-    return __declspec(deprecated);
-}
+pub const _CRT_MANAGED_HEAP_DEPRECATE = "";
+pub const _CONST_RETURN = "";
 pub const UNALIGNED = __unaligned;
-pub inline fn _CRT_ALIGN(x: anytype) @TypeOf(__attribute__(__aligned__(x))) {
-    _ = x;
-    return __attribute__(__aligned__(x));
-}
 pub const __CRTDECL = __cdecl;
 pub const _ARGMAX = @as(c_int, 100);
 pub const _TRUNCATE = @import("std").zig.c_translation.cast(usize, -@as(c_int, 1));
 pub inline fn _CRT_UNUSED(x: anytype) c_void {
-    _ = x;
     return @import("std").zig.c_translation.cast(c_void, x);
 }
 pub const __USE_MINGW_ANSI_STDIO = @as(c_int, 1);
-pub const _CRT_glob = _dowildcard;
+pub const __ANONYMOUS_DEFINED = "";
 pub const _ANONYMOUS_UNION = __MINGW_EXTENSION;
 pub const _ANONYMOUS_STRUCT = __MINGW_EXTENSION;
-pub const __MINGW_DEBUGBREAK_IMPL = !(__has_builtin(__debugbreak) != 0);
-pub const _CRT_SECURE_CPP_NOTHROW = throw();
+pub const DUMMYUNIONNAME = "";
+pub const DUMMYUNIONNAME1 = "";
+pub const DUMMYUNIONNAME2 = "";
+pub const DUMMYUNIONNAME3 = "";
+pub const DUMMYUNIONNAME4 = "";
+pub const DUMMYUNIONNAME5 = "";
+pub const DUMMYUNIONNAME6 = "";
+pub const DUMMYUNIONNAME7 = "";
+pub const DUMMYUNIONNAME8 = "";
+pub const DUMMYUNIONNAME9 = "";
+pub const DUMMYSTRUCTNAME = "";
+pub const DUMMYSTRUCTNAME1 = "";
+pub const DUMMYSTRUCTNAME2 = "";
+pub const DUMMYSTRUCTNAME3 = "";
+pub const DUMMYSTRUCTNAME4 = "";
+pub const DUMMYSTRUCTNAME5 = "";
+pub const _CRTNOALIAS = "";
+pub const _CRTRESTRICT = "";
+pub const _SIZE_T_DEFINED = "";
+pub const _SSIZE_T_DEFINED = "";
+pub const _RSIZE_T_DEFINED = "";
+pub const _INTPTR_T_DEFINED = "";
+pub const __intptr_t_defined = "";
+pub const _UINTPTR_T_DEFINED = "";
+pub const __uintptr_t_defined = "";
+pub const _PTRDIFF_T_DEFINED = "";
+pub const _PTRDIFF_T_ = "";
+pub const _WCHAR_T_DEFINED = "";
+pub const _WCTYPE_T_DEFINED = "";
+pub const _WINT_T = "";
+pub const _ERRCODE_DEFINED = "";
+pub const _TIME32_T_DEFINED = "";
+pub const _TIME64_T_DEFINED = "";
+pub const _TIME_T_DEFINED = "";
+pub const _TAGLC_ID_DEFINED = "";
+pub const _THREADLOCALEINFO = "";
+pub const _CRT_USE_WINAPI_FAMILY_DESKTOP_APP = "";
 pub const _DOMAIN = @as(c_int, 1);
 pub const _SING = @as(c_int, 2);
 pub const _OVERFLOW = @as(c_int, 3);
@@ -4266,9 +3855,16 @@ pub const _FPCLASS_PZ = @as(c_int, 0x0040);
 pub const _FPCLASS_PD = @as(c_int, 0x0080);
 pub const _FPCLASS_PN = @as(c_int, 0x0100);
 pub const _FPCLASS_PINF = @as(c_int, 0x0200);
+pub const __MINGW_SOFTMATH = "";
 pub const _HUGE = __MINGW_IMP_SYMBOL(_HUGE).*;
+pub const _EXCEPTION_DEFINED = "";
+pub const _CRT_ABS_DEFINED = "";
+pub const _CRT_ATOF_DEFINED = "";
 pub const EDOM = @as(c_int, 33);
 pub const ERANGE = @as(c_int, 34);
+pub const _COMPLEX_DEFINED = "";
+pub const _CRT_MATHERR_DEFINED = "";
+pub const _SIGN_DEFINED = "";
 pub const FP_SNAN = _FPCLASS_SNAN;
 pub const FP_QNAN = _FPCLASS_QNAN;
 pub const FP_NINF = _FPCLASS_NINF;
@@ -4279,6 +3875,9 @@ pub const FP_NZERO = _FPCLASS_NZ;
 pub const FP_PZERO = _FPCLASS_PZ;
 pub const FP_NNORM = _FPCLASS_NN;
 pub const FP_PNORM = _FPCLASS_PN;
+pub const HUGE_VALF = __builtin_huge_valf();
+pub const INFINITY = __builtin_inff();
+pub const NAN = __builtin_nanf("");
 pub const FP_NAN = @as(c_int, 0x0100);
 pub const FP_NORMAL = @as(c_int, 0x0400);
 pub const FP_INFINITE = FP_NAN | FP_NORMAL;
@@ -4286,20 +3885,16 @@ pub const FP_ZERO = @as(c_int, 0x4000);
 pub const FP_SUBNORMAL = FP_NORMAL | FP_ZERO;
 pub inline fn __dfp_expansion(__call: anytype, __fin: anytype, x: anytype) @TypeOf(__fin) {
     _ = __call;
-    _ = __fin;
     _ = x;
     return __fin;
 }
 pub inline fn isfinite(x: anytype) @TypeOf((fpclassify(x) & FP_NAN) == @as(c_int, 0)) {
-    _ = x;
     return (fpclassify(x) & FP_NAN) == @as(c_int, 0);
 }
 pub inline fn isinf(x: anytype) @TypeOf(fpclassify(x) == FP_INFINITE) {
-    _ = x;
     return fpclassify(x) == FP_INFINITE;
 }
 pub inline fn isnormal(x: anytype) @TypeOf(fpclassify(x) == FP_NORMAL) {
-    _ = x;
     return fpclassify(x) == FP_NORMAL;
 }
 pub const FP_ILOGB0 = @import("std").zig.c_translation.cast(c_int, @import("std").zig.c_translation.promoteIntLiteral(c_int, 0x80000000, .hexadecimal));

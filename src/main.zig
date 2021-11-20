@@ -1,139 +1,375 @@
 const std = @import("std");
 const ray = @import("translate-c/raylib.zig");
-const PostProcessShader = enum {
-    bloom,
-    blur,
-    cross_hatching,
-    cross_stitching,
-    dream_vision,
-    fisheye,
-    grayscale,
-    pixelizer,
-    posterization,
-    predator_view,
-    scanlines,
-    sobel,
-};
-pub fn loadShader(shader_type: PostProcessShader) ray.Shader {
-    return switch (shader_type) {
-        .bloom => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/bloom.fs"),
-        .blur => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/blur.fs"),
-        .cross_hatching => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/cross_hatching.fs"),
-        .cross_stitching => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/cross_stitching.fs"),
-        .dream_vision => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/dream_vision.fs"),
-        .fisheye => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/fisheye.fs"),
-        .grayscale => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/grayscale.fs"),
-        .pixelizer => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/pixelizer.fs"),
-        .posterization => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/posterization.fs"),
-        .predator_view => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/predator.fs"),
-        .scanlines => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/scanlines.fs"),
-        .sobel => return ray.LoadShader(null, "3rd/raylib/examples/shaders/resources/shaders/glsl330/sobel.fs"),
-    };
+const BroadPhase = @import("physic/BroadPhase.zig");
+const basic_type = @import("physic/basic_type.zig");
+const Vec2 = basic_type.Vec2;
+const Rect = basic_type.Rect;
+const Index = basic_type.Index;
+const Proxy = BroadPhase.Proxy;
+const QueryCallback = BroadPhase.QueryCallback;
+
+fn randomPos(random: std.rand.Random, min: f32, max: f32) Vec2 {
+    return Vec2.new(
+        std.math.max(random.float(f32) * max, min),
+        std.math.max(random.float(f32) * max, min),
+    );
 }
-pub fn unloadShader() void {}
-pub fn main() anyerror!void {
+
+fn randomVel(random: std.rand.Random, min: f32, max: f32) Vec2 {
+    return Vec2.new(
+        std.math.max((random.float(f32) - 0.5) * max, min),
+        std.math.max((random.float(f32) - 0.5) * max, min),
+    );
+}
+fn randomPosTo(random: std.rand.Random, m_pos: Vec2, h_size: Vec2) Vec2 {
+    return Vec2.new(
+        std.math.max(random.float(f32) * m_pos.x + h_size.x, m_pos.x - h_size.x),
+        std.math.max(random.float(f32) * m_pos.y + h_size.y, m_pos.y - h_size.y),
+    );
+}
+
+pub const ScreenQueryCallback = struct {
+    stack: std.ArrayList(Index),
+    entities: std.ArrayList(Index),
+    pub fn init(allocator: *std.mem.Allocator) ScreenQueryCallback {
+        return .{
+            .stack = std.ArrayList(Index).init(allocator),
+            .entities = std.ArrayList(Index).init(allocator),
+        };
+    }
+
+    pub fn deinit(q: *ScreenQueryCallback) void {
+        q.stack.deinit();
+        q.entities.deinit();
+    }
+
+    pub fn onOverlap(self: *ScreenQueryCallback, payload: void, entity: u32) void {
+        _ = payload;
+        self.entities.append(entity) catch unreachable;
+    }
+
+    pub fn reset(q: *ScreenQueryCallback) void {
+        q.entities.clearRetainingCapacity();
+    }
+};
+pub const RedCallback = struct {
+    const Pair = struct { left: Index, right: Index };
+    stack: std.ArrayList(Index),
+    pairs: std.ArrayList(Pair),
+    map: std.AutoHashMap(u32, void),
+    pub fn init(allocator: *std.mem.Allocator) RedCallback {
+        return .{
+            .stack = std.ArrayList(Index).init(allocator),
+            .pairs = std.ArrayList(Pair).init(allocator),
+            .map = std.AutoHashMap(u32, void).init(allocator),
+        };
+    }
+
+    pub fn deinit(q: *RedCallback) void {
+        q.stack.deinit();
+        q.pairs.deinit();
+        q.map.deinit();
+    }
+
+    pub fn onOverlap(self: *RedCallback, left: u32, right: u32) void {
+        if (left == right) return;
+        const key = left << 16 | right;
+        if (self.map.contains(key)) return;
+        self.map.putNoClobber(key, {}) catch unreachable;
+        self.pairs.append(.{ .left = left, .right = right }) catch unreachable;
+    }
+
+    pub fn reset(q: *RedCallback) void {
+        q.pairs.clearRetainingCapacity();
+        q.map.clearRetainingCapacity();
+    }
+};
+pub fn main() !void {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const screenWidth = 800;
-    const screenHeight = 450;
-    const total_shader = @intCast(std.meta.Tag(PostProcessShader), std.meta.fields(PostProcessShader).len);
-    ray.SetConfigFlags(ray.FLAG_MSAA_4X_HINT); // Enable Multi Sampling Anti Aliasing 4x (if available)
-    ray.InitWindow(screenWidth, screenHeight, "raylib [shaders] example - postprocessing shader");
+    const pixel = 20;
+    const screenWidth = 1200;
+    const screenHeight = 675;
+    var m_screen = Vec2.new(20, 20);
+    const h_screen_size = Vec2.new(screenWidth / (2 * pixel), screenHeight / (2 * pixel));
+    ray.InitWindow(screenWidth, screenHeight, "Physic zig zag");
+
     defer ray.CloseWindow();
+    ray.SetTargetFPS(60);
+    const allocator = std.heap.c_allocator;
 
-    // Define the camera to look into our 3d world
-    var camera = ray.Camera{
-        .position = ray.Vector3{ .x = 2, .y = 3, .z = 2 },
-        .target = ray.Vector3{ .x = 0, .y = 1, .z = 0 },
-        .up = ray.Vector3{ .x = 0, .y = 1, .z = 0 },
-        .fovy = 45,
-        .projection = ray.CAMERA_PERSPECTIVE,
-    };
+    var bp = BroadPhase.init(allocator);
+    defer bp.deinit();
 
-    var model = ray.LoadModel("3rd/raylib/examples/shaders/resources/models/church.obj"); // Load OBJ model
-    defer ray.UnloadModel(model); // Unload model
+    var stack = std.ArrayList(u8).init(allocator);
+    defer stack.deinit();
+    var writer = stack.writer();
 
-    var texture = ray.LoadTexture("3rd/raylib/examples/shaders/resources/models/church_diffuse.png"); // Load model texture
-    defer ray.UnloadTexture(texture); // Unload texture
-    // (diffuse map)
+    var random = std.rand.Xoshiro256.init(0).random();
+    const Entity = std.MultiArrayList(struct {
+        entity: u32,
+        pos: Vec2,
+        half_size: Vec2,
+        proxy: Proxy = undefined,
+        vel: Vec2,
+        refresh_vel: f32,
+    });
 
-    model.materials[0].maps[ray.MATERIAL_MAP_DIFFUSE].texture = texture; // Set model diffuse texture
-
-    var position = ray.Vector3{ .x = 0, .y = 0, .z = 0 }; // Set model position
-
-    // Load all postpro shaders
-    // NOTE 1: All postpro shader use the base vertex shader
-    // (DEFAULT_VERTEX_SHADER) NOTE 2: We load the correct shader depending on
-    // GLSL version
-
-    var shaders: [total_shader]ray.Shader = undefined;
-    for (shaders) |*sh, i| {
-        sh.* = loadShader(@intToEnum(PostProcessShader, @intCast(std.meta.Tag(PostProcessShader), i)));
+    var manager = Entity{};
+    defer manager.deinit(allocator);
+    var total_small: u32 = 5000;
+    var total_big: u32 = 100;
+    const max_x: f32 = 1000;
+    const min_size: f32 = 5;
+    const max_size: f32 = 20;
+    // bp.preCreateGrid(Vec2.zero(), Vec2.new(max_x, max_x));
+    try manager.setCapacity(allocator, total_big + total_small);
+    // Init entities
+    {
+        var entity: u32 = 0;
+        while (entity < total_small) : (entity += 1) {
+            try manager.append(allocator, .{
+                .entity = entity,
+                .pos = randomPos(random, 0, max_x),
+                .half_size = BroadPhase.half_element_size,
+                .vel = randomVel(random, -15, 15),
+                .refresh_vel = random.float(f32) * 10,
+            });
+        }
+        while (entity < total_small + total_big) : (entity += 1) {
+            try manager.append(allocator, .{
+                .entity = entity,
+                .pos = randomPos(random, 0, max_x),
+                .half_size = randomPos(random, min_size, max_size),
+                .vel = randomVel(random, -15, 15),
+                .refresh_vel = random.float(f32) * 10,
+            });
+        }
     }
-    //TODO: find a way to deffer clean shader
-    // comptime for (shaders) |sh| {
-    //     defer ray.UnloadShader(sh);
-    // };
-    var current_shader = PostProcessShader.bloom;
-    // Create a RenderTexture2D to be used for render to texture
-    var target = ray.LoadRenderTexture(screenWidth, screenHeight);
-    defer ray.UnloadRenderTexture(target); // Unload render texture
 
-    // Setup orbital camera
-    ray.SetCameraMode(camera, ray.CAMERA_ORBITAL); // Set an orbital camera mode
+    var slice = manager.slice();
+    var entities = slice.items(.entity);
+    var position = slice.items(.pos);
+    var proxy = slice.items(.proxy);
+    var h_size = slice.items(.half_size);
+    var refresh_vel = slice.items(.refresh_vel);
+    var vel = slice.items(.vel);
+    {
+        var timer = try std.time.Timer.start();
 
-    ray.SetTargetFPS(60); // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
+        var index: u32 = 0;
+        while (index < total_small) : (index += 1) {
+            const p = bp.createProxy(position[index], h_size[index], entities[index]);
+            std.debug.assert(p == .small);
+            proxy[index] = p;
+        }
+        var time_0 = timer.read();
+        std.debug.print("add {} entity to grid take {}ms\n", .{ total_small, time_0 / std.time.ns_per_ms });
 
+        timer = try std.time.Timer.start();
+        while (index < slice.len) : (index += 1) {
+            const p = bp.createProxy(position[index], h_size[index], entities[index]);
+            std.debug.assert(p == .big);
+            proxy[index] = p;
+        }
+        time_0 = timer.read();
+        std.debug.print("add {} entity to tree take {}ms\n", .{ total_big, time_0 / std.time.ns_per_ms });
+    }
+
+    var callback = QueryCallback.init(allocator);
+    defer callback.deinit();
+
+    var screen_callback = ScreenQueryCallback.init(allocator);
+    defer screen_callback.deinit();
+
+    var red_callback = RedCallback.init(allocator);
+    defer red_callback.deinit();
+    var update = true;
     // Main game loop
     while (!ray.WindowShouldClose()) {
-        // Update
-        //----------------------------------------------------------------------------------
-        ray.UpdateCamera(&camera); // Update camera
+        if (ray.IsKeyDown(ray.KEY_H)) {
+            m_screen.x -= 0.016 * 50.0;
+        }
+        if (ray.IsKeyDown(ray.KEY_L)) {
+            m_screen.x += 0.016 * 50.0;
+        }
+        if (ray.IsKeyDown(ray.KEY_K)) {
+            m_screen.y += 0.016 * 50.0;
+        }
+        if (ray.IsKeyDown(ray.KEY_J)) {
+            m_screen.y -= 0.016 * 50.0;
+        }
+        if (ray.IsKeyPressed(ray.KEY_F)) {
+            var index: u32 = 0;
 
-        if (ray.IsKeyPressed(ray.KEY_RIGHT)) {
-            current_shader = @intToEnum(PostProcessShader, (@enumToInt(current_shader) +% 1) % total_shader);
-        } else if (ray.IsKeyPressed(ray.KEY_LEFT)) {
-            current_shader = @intToEnum(PostProcessShader, (@enumToInt(current_shader) -% 1) % total_shader);
+            while (index < 10) : (index += 1) {
+                const pos = randomPosTo(random, m_screen, h_screen_size);
+                const entity = @intCast(u32, slice.len);
+                try manager.append(allocator, .{
+                    .entity = entity,
+                    .pos = pos,
+                    .half_size = BroadPhase.half_element_size,
+                    .proxy = bp.createProxy(pos, BroadPhase.half_element_size, entity),
+                    .vel = randomVel(random, -15, 15),
+                    .refresh_vel = random.float(f32) * 10,
+                });
+            }
+            index = 0;
+            while (index < 2) : (index += 1) {
+                const pos = randomPosTo(random, m_screen, h_screen_size);
+                const entity = @intCast(u32, slice.len);
+                const half_size = randomPos(random, min_size, max_size);
+                try manager.append(allocator, .{
+                    .entity = entity,
+                    .pos = pos,
+                    .half_size = half_size,
+                    .proxy = bp.createProxy(pos, half_size, entity),
+                    .vel = randomVel(random, -15, 15),
+                    .refresh_vel = random.float(f32) * 10,
+                });
+            }
+            total_big += 2;
+            total_small += 10;
+            slice = manager.slice();
+            entities = slice.items(.entity);
+            position = slice.items(.pos);
+            proxy = slice.items(.proxy);
+            refresh_vel = slice.items(.refresh_vel);
+            vel = slice.items(.vel);
+            h_size = slice.items(.half_size);
+        }
+        if (ray.IsKeyPressed(ray.KEY_SPACE)) {
+            update = !update;
+        }
+        //timer
+        for (refresh_vel) |*t, i| {
+            t.* -= 0.016;
+            if (t.* <= 0) {
+                t.* = random.float(f32) * 10;
+                vel[i] = randomVel(random, -15, 15);
+            }
+        }
+        //Move
+        var move_timer = try std.time.Timer.start();
+        if (update) {
+            for (position) |*pos, i| {
+                const new_pos = pos.add(vel[i].scale(0.016));
+                bp.moveProxy(proxy[i], pos.*, new_pos, h_size[i]);
+                pos.* = new_pos;
+            }
+        }
+        const moved_time = move_timer.read();
+
+        // query
+        var index: u32 = 0;
+        var timer = try std.time.Timer.start();
+        defer callback.total = 0;
+        while (index < slice.len) : (index += 1) {
+            try bp.query(position[index], h_size[index], proxy[index], entities[index], &callback);
+        }
+        const time_0 = timer.read();
+
+        defer screen_callback.reset();
+        try bp.userQuery(m_screen, h_screen_size, {}, &screen_callback);
+        for (screen_callback.entities.items) |entity| {
+            try bp.query(position[entity], h_size[entity], proxy[entity], entities[entity], &red_callback);
         }
 
-        //----------------------------------------------------------------------------------
-
-        // Draw
-        //----------------------------------------------------------------------------------
-        ray.BeginTextureMode(target); // Enable drawing to texture
-        ray.ClearBackground(ray.RAYWHITE); // Clear texture background
-
-        ray.BeginMode3D(camera); // Begin 3d mode drawing
-        ray.DrawModel(model, position, 0.1, ray.WHITE); // Draw 3d model with texture
-        ray.DrawGrid(10, 1); // Draw a grid
-        ray.EndMode3D(); // End 3d mode drawing, returns to orthographic 2d mode
-        ray.EndTextureMode(); // End drawing to texture (now we have a texture available
-        // for next passes)
+        defer red_callback.reset();
 
         ray.BeginDrawing();
-        ray.ClearBackground(ray.RAYWHITE); // Clear screen background
+        defer ray.EndDrawing();
+        ray.ClearBackground(ray.BLACK);
 
-        // Render generated texture using selected postprocessing shader
-        ray.BeginShaderMode(shaders[@enumToInt(current_shader)]);
-        // NOTE: Render texture must be y-flipped due to default OpenGL coordinates
-        // (left-bottom)
-        ray.DrawTextureRec(target.texture, ray.Rectangle{
-            .x = 0,
-            .y = 0,
-            .width = @intToFloat(f32, target.texture.width),
-            .height = @intToFloat(f32, -target.texture.height),
-        }, ray.Vector2{ .x = 0, .y = 0 }, ray.WHITE);
-        ray.EndShaderMode();
+        for (red_callback.pairs.items) |p| {
+            const aabb_left = Rect.newRectInt(
+                position[p.left],
+                h_size[p.left],
+                m_screen,
+                h_screen_size,
+            );
+            ray.DrawRectangle(
+                aabb_left.lower_bound.x * pixel,
+                aabb_left.lower_bound.y * pixel,
+                aabb_left.upper_bound.x * pixel,
+                aabb_left.upper_bound.y * pixel,
+                ray.SKYBLUE,
+            );
+            const aabb_right = Rect.newRectInt(
+                position[p.right],
+                h_size[p.right],
+                m_screen,
+                h_screen_size,
+            );
+            ray.DrawRectangle(
+                aabb_right.lower_bound.x * pixel,
+                aabb_right.lower_bound.y * pixel,
+                aabb_right.upper_bound.x * pixel,
+                aabb_right.upper_bound.y * pixel,
+                ray.SKYBLUE,
+            );
+        }
 
-        // Draw 2d shapes and text over drawn texture
-        ray.DrawRectangle(0, 9, 580, 30, ray.Fade(ray.LIGHTGRAY, 0.7));
+        for (screen_callback.entities.items) |entity| {
+            const is_draw = blk: {
+                for (red_callback.pairs.items) |p| {
+                    if (entity == p.left or entity == p.right) {
+                        break :blk false;
+                    }
+                } else {
+                    break :blk true;
+                }
 
-        ray.DrawText("(c) Church 3D model by Alberto Cano", screenWidth - 200, screenHeight - 20, 10, ray.GRAY);
-        ray.DrawText("CURRENT POSTPRO SHADER:", 10, 15, 20, ray.BLACK);
-        ray.DrawText(std.meta.tagName(current_shader).ptr, 330, 15, 20, ray.RED);
-        ray.DrawText("< >", 540, 10, 30, ray.DARKBLUE);
-        ray.DrawFPS(700, 15);
-        ray.EndDrawing();
+                break :blk true;
+            };
+            if (is_draw) {
+                const aabb = Rect.newRectInt(
+                    position[entity],
+                    h_size[entity],
+                    m_screen,
+                    h_screen_size,
+                );
+                ray.DrawRectangle(
+                    aabb.lower_bound.x * pixel,
+                    aabb.lower_bound.y * pixel,
+                    aabb.upper_bound.x * pixel,
+                    aabb.upper_bound.y * pixel,
+                    ray.RED,
+                );
+            }
+        }
+        try std.fmt.format(writer, "Total Grids: {}", .{bp.grid_map.count()});
+        try stack.append(0);
+        ray.DrawText(@ptrCast([*c]const u8, stack.items), 20, 20, 20, ray.BEIGE);
+        stack.clearRetainingCapacity();
+
+        try std.fmt.format(
+            writer,
+            "Move big: {} and small: {}. Take {}ms\n",
+            .{ total_big, total_small, moved_time / std.time.ns_per_ms },
+        );
+        try stack.append(0);
+        ray.DrawText(@ptrCast([*c]const u8, stack.items), 20, 42, 20, ray.BEIGE);
+        stack.clearRetainingCapacity();
+
+        try std.fmt.format(
+            writer,
+            "Query big: {} and small: {}. Take {}ms with {} pairs\n",
+            .{ total_big, total_small, time_0 / std.time.ns_per_ms, callback.total },
+        );
+        try stack.append(0);
+        ray.DrawText(@ptrCast([*c]const u8, stack.items), 20, 64, 20, ray.BEIGE);
+        stack.clearRetainingCapacity();
+
+        try std.fmt.format(writer, "Objects on screen {}\n", .{screen_callback.entities.items.len});
+        try stack.append(0);
+        ray.DrawText(@ptrCast([*c]const u8, stack.items), 20, 86, 20, ray.BEIGE);
+        stack.clearRetainingCapacity();
+
+        defer screen_callback.reset();
+        try std.fmt.format(writer, "Pairs overlap on screen {}\n", .{red_callback.pairs.items.len});
+        try stack.append(0);
+        ray.DrawText(@ptrCast([*c]const u8, stack.items), 20, 108, 20, ray.BEIGE);
+        stack.clearRetainingCapacity();
     }
 }

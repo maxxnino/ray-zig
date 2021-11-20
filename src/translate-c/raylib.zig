@@ -1,4 +1,52 @@
-pub usingnamespace @import("std").zig.c_builtins;
+pub const __builtin_bswap16 = @import("std").zig.c_builtins.__builtin_bswap16;
+pub const __builtin_bswap32 = @import("std").zig.c_builtins.__builtin_bswap32;
+pub const __builtin_bswap64 = @import("std").zig.c_builtins.__builtin_bswap64;
+pub const __builtin_signbit = @import("std").zig.c_builtins.__builtin_signbit;
+pub const __builtin_signbitf = @import("std").zig.c_builtins.__builtin_signbitf;
+pub const __builtin_popcount = @import("std").zig.c_builtins.__builtin_popcount;
+pub const __builtin_ctz = @import("std").zig.c_builtins.__builtin_ctz;
+pub const __builtin_clz = @import("std").zig.c_builtins.__builtin_clz;
+pub const __builtin_sqrt = @import("std").zig.c_builtins.__builtin_sqrt;
+pub const __builtin_sqrtf = @import("std").zig.c_builtins.__builtin_sqrtf;
+pub const __builtin_sin = @import("std").zig.c_builtins.__builtin_sin;
+pub const __builtin_sinf = @import("std").zig.c_builtins.__builtin_sinf;
+pub const __builtin_cos = @import("std").zig.c_builtins.__builtin_cos;
+pub const __builtin_cosf = @import("std").zig.c_builtins.__builtin_cosf;
+pub const __builtin_exp = @import("std").zig.c_builtins.__builtin_exp;
+pub const __builtin_expf = @import("std").zig.c_builtins.__builtin_expf;
+pub const __builtin_exp2 = @import("std").zig.c_builtins.__builtin_exp2;
+pub const __builtin_exp2f = @import("std").zig.c_builtins.__builtin_exp2f;
+pub const __builtin_log = @import("std").zig.c_builtins.__builtin_log;
+pub const __builtin_logf = @import("std").zig.c_builtins.__builtin_logf;
+pub const __builtin_log2 = @import("std").zig.c_builtins.__builtin_log2;
+pub const __builtin_log2f = @import("std").zig.c_builtins.__builtin_log2f;
+pub const __builtin_log10 = @import("std").zig.c_builtins.__builtin_log10;
+pub const __builtin_log10f = @import("std").zig.c_builtins.__builtin_log10f;
+pub const __builtin_abs = @import("std").zig.c_builtins.__builtin_abs;
+pub const __builtin_fabs = @import("std").zig.c_builtins.__builtin_fabs;
+pub const __builtin_fabsf = @import("std").zig.c_builtins.__builtin_fabsf;
+pub const __builtin_floor = @import("std").zig.c_builtins.__builtin_floor;
+pub const __builtin_floorf = @import("std").zig.c_builtins.__builtin_floorf;
+pub const __builtin_ceil = @import("std").zig.c_builtins.__builtin_ceil;
+pub const __builtin_ceilf = @import("std").zig.c_builtins.__builtin_ceilf;
+pub const __builtin_trunc = @import("std").zig.c_builtins.__builtin_trunc;
+pub const __builtin_truncf = @import("std").zig.c_builtins.__builtin_truncf;
+pub const __builtin_round = @import("std").zig.c_builtins.__builtin_round;
+pub const __builtin_roundf = @import("std").zig.c_builtins.__builtin_roundf;
+pub const __builtin_strlen = @import("std").zig.c_builtins.__builtin_strlen;
+pub const __builtin_strcmp = @import("std").zig.c_builtins.__builtin_strcmp;
+pub const __builtin_object_size = @import("std").zig.c_builtins.__builtin_object_size;
+pub const __builtin___memset_chk = @import("std").zig.c_builtins.__builtin___memset_chk;
+pub const __builtin_memset = @import("std").zig.c_builtins.__builtin_memset;
+pub const __builtin___memcpy_chk = @import("std").zig.c_builtins.__builtin___memcpy_chk;
+pub const __builtin_memcpy = @import("std").zig.c_builtins.__builtin_memcpy;
+pub const __builtin_expect = @import("std").zig.c_builtins.__builtin_expect;
+pub const __builtin_nanf = @import("std").zig.c_builtins.__builtin_nanf;
+pub const __builtin_huge_valf = @import("std").zig.c_builtins.__builtin_huge_valf;
+pub const __builtin_inff = @import("std").zig.c_builtins.__builtin_inff;
+pub const __builtin_isnan = @import("std").zig.c_builtins.__builtin_isnan;
+pub const __builtin_isinf = @import("std").zig.c_builtins.__builtin_isinf;
+pub const __builtin_isinf_sign = @import("std").zig.c_builtins.__builtin_isinf_sign;
 pub const __builtin_va_list = [*c]u8;
 pub const va_list = __builtin_va_list;
 pub const __gnuc_va_list = __builtin_va_list;
@@ -894,7 +942,7 @@ pub extern fn LoadFont(fileName: [*c]const u8) Font;
 pub extern fn LoadFontEx(fileName: [*c]const u8, fontSize: c_int, fontChars: [*c]c_int, charsCount: c_int) Font;
 pub extern fn LoadFontFromImage(image: Image, key: Color, firstChar: c_int) Font;
 pub extern fn LoadFontFromMemory(fileType: [*c]const u8, fileData: [*c]const u8, dataSize: c_int, fontSize: c_int, fontChars: [*c]c_int, charsCount: c_int) Font;
-pub extern fn LoadFontData(fileData: [*c]const u8, dataSize: c_int, fontSize: c_int, fontChars: [*c]c_int, charsCount: c_int, type: c_int) [*c]CharInfo;
+pub extern fn LoadFontData(fileData: [*c]const u8, dataSize: c_int, fontSize: c_int, fontChars: [*c]c_int, charsCount: c_int, @"type": c_int) [*c]CharInfo;
 pub extern fn GenImageFontAtlas(chars: [*c]const CharInfo, recs: [*c][*c]Rectangle, charsCount: c_int, fontSize: c_int, padding: c_int, packMethod: c_int) Image;
 pub extern fn UnloadFontData(chars: [*c]CharInfo, charsCount: c_int) void;
 pub extern fn UnloadFont(font: Font) void;
@@ -1049,17 +1097,39 @@ pub extern fn StopAudioStream(stream: AudioStream) void;
 pub extern fn SetAudioStreamVolume(stream: AudioStream, volume: f32) void;
 pub extern fn SetAudioStreamPitch(stream: AudioStream, pitch: f32) void;
 pub extern fn SetAudioStreamBufferSizeDefault(size: c_int) void;
-pub const va_start = @compileError("TODO implement function '__builtin_va_start' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\include\stdarg.h:17:9
-pub const va_end = @compileError("TODO implement function '__builtin_va_end' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\include\stdarg.h:18:9
-pub const va_arg = @compileError("TODO implement function '__builtin_va_arg' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\include\stdarg.h:19:9
-pub const __va_copy = @compileError("TODO implement function '__builtin_va_copy' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\include\stdarg.h:24:9
-pub const va_copy = @compileError("TODO implement function '__builtin_va_copy' in std.c.builtins"); // C:\Users\user\scoop\apps\ziglang\current\lib\zig\include\stdarg.h:27:9
+pub const __INTMAX_C_SUFFIX__ = @compileError("unable to translate macro: undefined identifier `LL`"); // (no file):66:9
+pub const __UINTMAX_C_SUFFIX__ = @compileError("unable to translate macro: undefined identifier `ULL`"); // (no file):72:9
+pub const __INT64_C_SUFFIX__ = @compileError("unable to translate macro: undefined identifier `LL`"); // (no file):164:9
+pub const __UINT32_C_SUFFIX__ = @compileError("unable to translate macro: undefined identifier `U`"); // (no file):186:9
+pub const __UINT64_C_SUFFIX__ = @compileError("unable to translate macro: undefined identifier `ULL`"); // (no file):194:9
+pub const __seg_gs = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):315:9
+pub const __seg_fs = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):316:9
+pub const __declspec = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):372:9
+pub const _cdecl = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):373:9
+pub const __cdecl = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):374:9
+pub const _stdcall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):375:9
+pub const __stdcall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):376:9
+pub const _fastcall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):377:9
+pub const __fastcall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):378:9
+pub const _thiscall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):379:9
+pub const __thiscall = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):380:9
+pub const _pascal = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):381:9
+pub const __pascal = @compileError("unable to translate macro: undefined identifier `__attribute__`"); // (no file):382:9
+pub const va_start = @compileError("unable to translate macro: undefined identifier `__builtin_va_start`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\include\stdarg.h:17:9
+pub const va_end = @compileError("unable to translate macro: undefined identifier `__builtin_va_end`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\include\stdarg.h:18:9
+pub const va_arg = @compileError("unable to translate macro: undefined identifier `__builtin_va_arg`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\include\stdarg.h:19:9
+pub const __va_copy = @compileError("unable to translate macro: undefined identifier `__builtin_va_copy`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\include\stdarg.h:24:9
+pub const va_copy = @compileError("unable to translate macro: undefined identifier `__builtin_va_copy`"); // C:\Users\user\scoop\apps\zig-dev\current\lib\include\stdarg.h:27:9
+pub const RL_MALLOC = @compileError("unable to translate macro: undefined identifier `malloc`"); // .\3rd\raylib\src\raylib.h:111:13
+pub const RL_CALLOC = @compileError("unable to translate macro: undefined identifier `calloc`"); // .\3rd\raylib\src\raylib.h:114:13
+pub const RL_REALLOC = @compileError("unable to translate macro: undefined identifier `realloc`"); // .\3rd\raylib\src\raylib.h:117:13
+pub const RL_FREE = @compileError("unable to translate macro: undefined identifier `free`"); // .\3rd\raylib\src\raylib.h:120:13
 pub const __llvm__ = @as(c_int, 1);
 pub const __clang__ = @as(c_int, 1);
-pub const __clang_major__ = @as(c_int, 12);
+pub const __clang_major__ = @as(c_int, 13);
 pub const __clang_minor__ = @as(c_int, 0);
-pub const __clang_patchlevel__ = @as(c_int, 1);
-pub const __clang_version__ = "12.0.1 (https://github.com/llvm/llvm-project 328a6ec955327c6d56b6bc3478c723dd3cd468ef)";
+pub const __clang_patchlevel__ = @as(c_int, 0);
+pub const __clang_version__ = "13.0.0 (https://github.com/llvm/llvm-project d7b669b3a30345cfcdb2fde2af6f48aa4b94845d)";
 pub const __GNUC__ = @as(c_int, 4);
 pub const __GNUC_MINOR__ = @as(c_int, 2);
 pub const __GNUC_PATCHLEVEL__ = @as(c_int, 1);
@@ -1076,10 +1146,12 @@ pub const __OPENCL_MEMORY_SCOPE_DEVICE = @as(c_int, 2);
 pub const __OPENCL_MEMORY_SCOPE_ALL_SVM_DEVICES = @as(c_int, 3);
 pub const __OPENCL_MEMORY_SCOPE_SUB_GROUP = @as(c_int, 4);
 pub const __PRAGMA_REDEFINE_EXTNAME = @as(c_int, 1);
-pub const __VERSION__ = "Clang 12.0.1 (https://github.com/llvm/llvm-project 328a6ec955327c6d56b6bc3478c723dd3cd468ef)";
+pub const __VERSION__ = "Clang 13.0.0 (https://github.com/llvm/llvm-project d7b669b3a30345cfcdb2fde2af6f48aa4b94845d)";
 pub const __OBJC_BOOL_IS_BOOL = @as(c_int, 0);
 pub const __CONSTANT_CFSTRINGS__ = @as(c_int, 1);
 pub const __SEH__ = @as(c_int, 1);
+pub const __clang_literal_encoding__ = "UTF-8";
+pub const __clang_wide_literal_encoding__ = "UTF-16";
 pub const __OPTIMIZE__ = @as(c_int, 1);
 pub const __ORDER_LITTLE_ENDIAN__ = @as(c_int, 1234);
 pub const __ORDER_BIG_ENDIAN__ = @as(c_int, 4321);
@@ -1116,13 +1188,11 @@ pub const __SIZEOF_INT128__ = @as(c_int, 16);
 pub const __INTMAX_TYPE__ = c_longlong;
 pub const __INTMAX_FMTd__ = "lld";
 pub const __INTMAX_FMTi__ = "lli";
-pub const __INTMAX_C_SUFFIX__ = LL;
 pub const __UINTMAX_TYPE__ = c_ulonglong;
 pub const __UINTMAX_FMTo__ = "llo";
 pub const __UINTMAX_FMTu__ = "llu";
 pub const __UINTMAX_FMTx__ = "llx";
 pub const __UINTMAX_FMTX__ = "llX";
-pub const __UINTMAX_C_SUFFIX__ = ULL;
 pub const __INTMAX_WIDTH__ = @as(c_int, 64);
 pub const __PTRDIFF_TYPE__ = c_longlong;
 pub const __PTRDIFF_FMTd__ = "lld";
@@ -1202,21 +1272,24 @@ pub const __WINT_UNSIGNED__ = @as(c_int, 1);
 pub const __INT8_TYPE__ = i8;
 pub const __INT8_FMTd__ = "hhd";
 pub const __INT8_FMTi__ = "hhi";
+pub const __INT8_C_SUFFIX__ = "";
 pub const __INT16_TYPE__ = c_short;
 pub const __INT16_FMTd__ = "hd";
 pub const __INT16_FMTi__ = "hi";
+pub const __INT16_C_SUFFIX__ = "";
 pub const __INT32_TYPE__ = c_int;
 pub const __INT32_FMTd__ = "d";
 pub const __INT32_FMTi__ = "i";
+pub const __INT32_C_SUFFIX__ = "";
 pub const __INT64_TYPE__ = c_longlong;
 pub const __INT64_FMTd__ = "lld";
 pub const __INT64_FMTi__ = "lli";
-pub const __INT64_C_SUFFIX__ = LL;
 pub const __UINT8_TYPE__ = u8;
 pub const __UINT8_FMTo__ = "hho";
 pub const __UINT8_FMTu__ = "hhu";
 pub const __UINT8_FMTx__ = "hhx";
 pub const __UINT8_FMTX__ = "hhX";
+pub const __UINT8_C_SUFFIX__ = "";
 pub const __UINT8_MAX__ = @as(c_int, 255);
 pub const __INT8_MAX__ = @as(c_int, 127);
 pub const __UINT16_TYPE__ = c_ushort;
@@ -1224,6 +1297,7 @@ pub const __UINT16_FMTo__ = "ho";
 pub const __UINT16_FMTu__ = "hu";
 pub const __UINT16_FMTx__ = "hx";
 pub const __UINT16_FMTX__ = "hX";
+pub const __UINT16_C_SUFFIX__ = "";
 pub const __UINT16_MAX__ = @import("std").zig.c_translation.promoteIntLiteral(c_int, 65535, .decimal);
 pub const __INT16_MAX__ = @as(c_int, 32767);
 pub const __UINT32_TYPE__ = c_uint;
@@ -1231,7 +1305,6 @@ pub const __UINT32_FMTo__ = "o";
 pub const __UINT32_FMTu__ = "u";
 pub const __UINT32_FMTx__ = "x";
 pub const __UINT32_FMTX__ = "X";
-pub const __UINT32_C_SUFFIX__ = U;
 pub const __UINT32_MAX__ = @import("std").zig.c_translation.promoteIntLiteral(c_uint, 4294967295, .decimal);
 pub const __INT32_MAX__ = @import("std").zig.c_translation.promoteIntLiteral(c_int, 2147483647, .decimal);
 pub const __UINT64_TYPE__ = c_ulonglong;
@@ -1239,7 +1312,6 @@ pub const __UINT64_FMTo__ = "llo";
 pub const __UINT64_FMTu__ = "llu";
 pub const __UINT64_FMTx__ = "llx";
 pub const __UINT64_FMTX__ = "llX";
-pub const __UINT64_C_SUFFIX__ = ULL;
 pub const __UINT64_MAX__ = @as(c_ulonglong, 18446744073709551615);
 pub const __INT64_MAX__ = @as(c_longlong, 9223372036854775807);
 pub const __INT_LEAST8_TYPE__ = i8;
@@ -1322,6 +1394,7 @@ pub const __UINT_FAST64_FMTo__ = "llo";
 pub const __UINT_FAST64_FMTu__ = "llu";
 pub const __UINT_FAST64_FMTx__ = "llx";
 pub const __UINT_FAST64_FMTX__ = "llX";
+pub const __USER_LABEL_PREFIX__ = "";
 pub const __FINITE_MATH_ONLY__ = @as(c_int, 0);
 pub const __GNUC_STDC_INLINE__ = @as(c_int, 1);
 pub const __GCC_ATOMIC_TEST_AND_SET_TRUEVAL = @as(c_int, 1);
@@ -1350,6 +1423,7 @@ pub const __pic__ = @as(c_int, 2);
 pub const __FLT_EVAL_METHOD__ = @as(c_int, 0);
 pub const __FLT_RADIX__ = @as(c_int, 2);
 pub const __DECIMAL_DIG__ = __LDBL_DECIMAL_DIG__;
+pub const __SSP_STRONG__ = @as(c_int, 2);
 pub const __GCC_ASM_FLAG_OUTPUTS__ = @as(c_int, 1);
 pub const __code_model_small__ = @as(c_int, 1);
 pub const __amd64__ = @as(c_int, 1);
@@ -1358,11 +1432,10 @@ pub const __x86_64 = @as(c_int, 1);
 pub const __x86_64__ = @as(c_int, 1);
 pub const __SEG_GS = @as(c_int, 1);
 pub const __SEG_FS = @as(c_int, 1);
-pub const __seg_gs = __attribute__(address_space(@as(c_int, 256)));
-pub const __seg_fs = __attribute__(address_space(@as(c_int, 257)));
 pub const __corei7 = @as(c_int, 1);
 pub const __corei7__ = @as(c_int, 1);
 pub const __tune_corei7__ = @as(c_int, 1);
+pub const __REGISTER_PREFIX__ = "";
 pub const __NO_MATH_INLINES = @as(c_int, 1);
 pub const __AES__ = @as(c_int, 1);
 pub const __PCLMUL__ = @as(c_int, 1);
@@ -1414,52 +1487,23 @@ pub const __WIN64__ = @as(c_int, 1);
 pub const __MINGW64__ = @as(c_int, 1);
 pub const __MSVCRT__ = @as(c_int, 1);
 pub const __MINGW32__ = @as(c_int, 1);
-pub inline fn __declspec(a: anytype) @TypeOf(__attribute__(a)) {
-    _ = a;
-    return __attribute__(a);
-}
-pub const _cdecl = __attribute__(__cdecl__);
-pub const __cdecl = __attribute__(__cdecl__);
-pub const _stdcall = __attribute__(__stdcall__);
-pub const __stdcall = __attribute__(__stdcall__);
-pub const _fastcall = __attribute__(__fastcall__);
-pub const __fastcall = __attribute__(__fastcall__);
-pub const _thiscall = __attribute__(__thiscall__);
-pub const __thiscall = __attribute__(__thiscall__);
-pub const _pascal = __attribute__(__pascal__);
-pub const __pascal = __attribute__(__pascal__);
 pub const __STDC__ = @as(c_int, 1);
 pub const __STDC_HOSTED__ = @as(c_int, 1);
 pub const __STDC_VERSION__ = @as(c_long, 201710);
 pub const __STDC_UTF_16__ = @as(c_int, 1);
 pub const __STDC_UTF_32__ = @as(c_int, 1);
 pub const _DEBUG = @as(c_int, 1);
+pub const RAYLIB_H = "";
+pub const __STDARG_H = "";
+pub const _VA_LIST = "";
 pub const __GNUC_VA_LIST = @as(c_int, 1);
 pub const RAYLIB_VERSION = "3.8-dev";
+pub const RLAPI = "";
 pub const PI = @as(f32, 3.14159265358979323846);
 pub const DEG2RAD = PI / @as(f32, 180.0);
 pub const RAD2DEG = @as(f32, 180.0) / PI;
-pub inline fn RL_MALLOC(sz: anytype) @TypeOf(malloc(sz)) {
-    _ = sz;
-    return malloc(sz);
-}
-pub inline fn RL_CALLOC(n: anytype, sz: anytype) @TypeOf(calloc(n, sz)) {
-    _ = n;
-    _ = sz;
-    return calloc(n, sz);
-}
-pub inline fn RL_REALLOC(ptr: anytype, sz: anytype) @TypeOf(realloc(ptr, sz)) {
-    _ = ptr;
-    _ = sz;
-    return realloc(ptr, sz);
-}
-pub inline fn RL_FREE(ptr: anytype) @TypeOf(free(ptr)) {
-    _ = ptr;
-    return free(ptr);
-}
-pub inline fn CLITERAL(type_1: anytype) @TypeOf(type_1) {
-    _ = type_1;
-    return type_1;
+pub inline fn CLITERAL(@"type": anytype) @TypeOf(@"type") {
+    return @"type";
 }
 pub const LIGHTGRAY = @import("std").mem.zeroInit(CLITERAL(Color), .{ @as(c_int, 200), @as(c_int, 200), @as(c_int, 200), @as(c_int, 255) });
 pub const GRAY = @import("std").mem.zeroInit(CLITERAL(Color), .{ @as(c_int, 130), @as(c_int, 130), @as(c_int, 130), @as(c_int, 255) });
@@ -1492,9 +1536,10 @@ pub const FILTER_POINT = TEXTURE_FILTER_POINT;
 pub const FILTER_BILINEAR = TEXTURE_FILTER_BILINEAR;
 pub const MAP_DIFFUSE = MATERIAL_MAP_DIFFUSE;
 pub const UNCOMPRESSED_R8G8B8A8 = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8;
-pub const bool_1 = bool;
-pub const true_2 = @as(c_int, 1);
-pub const false_3 = @as(c_int, 0);
+pub const __STDBOOL_H = "";
+pub const @"bool" = bool;
+pub const @"true" = @as(c_int, 1);
+pub const @"false" = @as(c_int, 0);
 pub const __bool_true_false_are_defined = @as(c_int, 1);
 pub const MOUSE_LEFT_BUTTON = MOUSE_BUTTON_LEFT;
 pub const MOUSE_RIGHT_BUTTON = MOUSE_BUTTON_RIGHT;
