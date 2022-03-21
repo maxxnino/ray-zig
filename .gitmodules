@@ -1,3 +1,9 @@
 [submodule "raylib"]
 	path = 3rd/raylib
 	url = https://github.com/raysan5/raylib
+[submodule "3rd/zalgebra"]
+	path = 3rd/zalgebra
+	url = https://github.com/kooparse/zalgebra
+[submodule "3rd/zig-zag"]
+	path = 3rd/zig-zag
+	url = https://github.com/maxxnino/zig-zag
